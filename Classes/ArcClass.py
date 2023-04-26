@@ -1,12 +1,11 @@
-from abc import ABC, abstractmethod
 from NodeClass import Node
 
 class Arc():
-    def __init__(self):
-        self.value = None
-        self.targetNode = Node
-        self.sourceNode = Node
-        self.OutputArc = None
+    def __init__(self, value: int ):
+        self.value = value
+        self.targetNode = None
+        self.sourceNode = None
+
     
 
     def getTargetNode(self):
@@ -16,8 +15,8 @@ class Arc():
     def getsourceNode(self):
         return self.sourceNode
     
-    def addTargetNode(self, target:Node):
+    def setTargetNode(self, target:Node):
         self.targetNode = target
     
-    def addSourceNode(self, source: Node):
+    def setSourceNode(self, source: Node):
         self.sourceNode = source 

@@ -2,13 +2,12 @@ from NodeClass import Node
 
 
 class Transition(Node):
-    def __init__(self, is_timed=False):
+    def __init__(self, is_timed: bool):
         super().__init__()
         self.isTimed = is_timed
-        self.outputTransition = None
     
     def getIsTimed(self):
-        return self.is_timed
+        return self.isTimed
     
-    def addIsTimed(self, isTimed : bool):
+    def setIsTimed(self, isTimed : bool):
         self.isTimed = isTimed

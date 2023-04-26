@@ -1,14 +1,13 @@
 from NodeClass import Node
 
 class Place(Node):
-    def __init__(self):
+    def __init__(self, name):
         super().__init__()
-        self.nameValue = None
+        self.nameValue = name
         self.initialMarking = None
-        self.outputPlace = None
     
-    def getInitialMarking(self, mark: int):
+    def getInitialMarking(self):
         return self.initialMarking
     
-    def addInitialMarking(self, mark: int):
+    def setInitialMarking(self, mark: int):
         self.initialMarking = mark
