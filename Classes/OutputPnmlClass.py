@@ -1,5 +1,5 @@
 from OutputFormatClass import OutputFormat
-from NodeClass import Node 
+from PlaceClass import Place 
 from TransitionClass import Transition
 from ArcClass import Arc
 

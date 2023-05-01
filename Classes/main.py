@@ -2,13 +2,14 @@ from OutputPnmlClass import OutputPNML
 import json
 
 #node types of interest
-DECL_TYPES = ["VarDecl"]
+#ECL_TYPES = ["VarDecl"]
 
 
-if __name__== "__main__":
-    with open("curated_ast.json", "r") as j:
-        myjson = json.load(j)
-        print(myjson)
+#f __name__== "__main__":
+
+j = open('curated_ast.json')
+myjson = json.load(j)
+print(myjson)
     
 
     #aux = prueba.createOutputTransition()

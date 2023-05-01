@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from ArcClass import Arc 
+from ArcClass import Arc
 
 class Node(ABC):
     def __init__(self, Id ):

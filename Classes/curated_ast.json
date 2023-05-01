@@ -1,0 +1,174 @@
+{
+    "c_src/variable_declaration.c": {
+        "0x63d838": {
+            "parent": null,
+            "id": "0x63d838",
+            "kind": "TranslationUnitDecl",
+            "loc": {},
+            "range": {
+                "begin": {},
+                "end": {}
+            },
+            "inner": [
+                "0x74e828"
+            ]
+        },
+        "0x74e828": {
+            "parent": "0x63d838",
+            "id": "0x74e828",
+            "kind": "FunctionDecl",
+            "loc": {
+                "offset": 45,
+                "file": "c_src/variable_declaration.c",
+                "line": 4,
+                "col": 6,
+                "tokLen": 4
+            },
+            "range": {
+                "begin": {
+                    "offset": 40,
+                    "col": 1,
+                    "tokLen": 4
+                },
+                "end": {
+                    "offset": 92,
+                    "line": 6,
+                    "col": 1,
+                    "tokLen": 1
+                }
+            },
+            "name": "main",
+            "mangledName": "main",
+            "type": {
+                "qualType": "void (int, char **)"
+            },
+            "inner": [
+                "0x74e648",
+                "0x74e710",
+                "0x74e970"
+            ]
+        },
+        "0x74e648": {
+            "parent": "0x74e828",
+            "id": "0x74e648",
+            "kind": "ParmVarDecl",
+            "loc": {
+                "offset": 54,
+                "line": 4,
+                "col": 15,
+                "tokLen": 4
+            },
+            "range": {
+                "begin": {
+                    "offset": 50,
+                    "col": 11,
+                    "tokLen": 3
+                },
+                "end": {
+                    "offset": 54,
+                    "col": 15,
+                    "tokLen": 4
+                }
+            },
+            "name": "argc",
+            "type": {
+                "qualType": "int"
+            }
+        },
+        "0x74e710": {
+            "parent": "0x74e828",
+            "id": "0x74e710",
+            "kind": "ParmVarDecl",
+            "loc": {
+                "offset": 66,
+                "col": 27,
+                "tokLen": 4
+            },
+            "range": {
+                "begin": {
+                    "offset": 60,
+                    "col": 21,
+                    "tokLen": 4
+                },
+                "end": {
+                    "offset": 71,
+                    "col": 32,
+                    "tokLen": 1
+                }
+            },
+            "name": "argv",
+            "type": {
+                "desugaredQualType": "char **",
+                "qualType": "char **"
+            }
+        },
+        "0x74e970": {
+            "parent": "0x74e828",
+            "id": "0x74e970",
+            "kind": "CompoundStmt",
+            "range": {
+                "begin": {
+                    "offset": 73,
+                    "col": 34,
+                    "tokLen": 1
+                },
+                "end": {
+                    "offset": 92,
+                    "line": 6,
+                    "col": 1,
+                    "tokLen": 1
+                }
+            },
+            "inner": [
+                "0x74e958"
+            ]
+        },
+        "0x74e958": {
+            "parent": "0x74e970",
+            "id": "0x74e958",
+            "kind": "DeclStmt",
+            "range": {
+                "begin": {
+                    "offset": 76,
+                    "line": 5,
+                    "col": 2,
+                    "tokLen": 4
+                },
+                "end": {
+                    "offset": 90,
+                    "col": 16,
+                    "tokLen": 1
+                }
+            },
+            "inner": [
+                "0x74e8f0"
+            ]
+        },
+        "0x74e8f0": {
+            "parent": "0x74e958",
+            "id": "0x74e8f0",
+            "kind": "VarDecl",
+            "loc": {
+                "offset": 82,
+                "col": 8,
+                "tokLen": 8
+            },
+            "range": {
+                "begin": {
+                    "offset": 76,
+                    "col": 2,
+                    "tokLen": 4
+                },
+                "end": {
+                    "offset": 82,
+                    "col": 8,
+                    "tokLen": 8
+                }
+            },
+            "name": "filename",
+            "type": {
+                "qualType": "char *"
+            }
+        }
+    }
+}

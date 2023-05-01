@@ -1,4 +1,4 @@
-from NodeClass import Node
+
 
 class Arc():
     def __init__(self, value: int ):
