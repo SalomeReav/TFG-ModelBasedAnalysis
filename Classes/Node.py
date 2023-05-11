@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from ArcClass import Arc
+import Arc as arc
 
 class Node(ABC):
     def __init__(self, Id ):
@@ -16,9 +16,9 @@ class Node(ABC):
         return self.targetNodes
 
     @abstractmethod
-    def setSourceArc(self, source: Arc):
+    def setSourceArc(self, source: arc.Arc):
         self.sourceNodes.append(source)
     
     @abstractmethod
-    def setTargetArc(self, target: Arc):
+    def setTargetArc(self, target: arc.Arc):
         self.targetNodes.append(target)

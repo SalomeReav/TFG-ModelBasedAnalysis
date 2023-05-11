@@ -1,18 +1,16 @@
 from abc import ABC, abstractmethod
 
 class OutputFormat(ABC):
-    def __init__(self):
-        pass
     '''Interface that returns xml for each type of petri net component'''
     @abstractmethod
-    def createTransition(self):
+    def writeTransition(self):
         pass
     
     @abstractmethod
-    def createPlace(self):
+    def writePlace(self,place):
         pass 
 #rr    
     @abstractmethod
-    def createArc(self):
+    def writeArc(self):
         pass
 

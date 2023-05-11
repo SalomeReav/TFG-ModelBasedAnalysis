@@ -15,8 +15,8 @@ class Arc():
     def getsourceNode(self):
         return self.sourceNode
     
-    def setTargetNode(self, target:Node):
+    def setTargetNode(self, target):
         self.targetNode = target
     
-    def setSourceNode(self, source: Node):
+    def setSourceNode(self, source):
         self.sourceNode = source 

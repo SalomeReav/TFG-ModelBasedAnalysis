@@ -1,9 +1,9 @@
-from NodeClass import Node
+from Node import Node
 
 
 class Transition(Node):
-    def __init__(self, is_timed: bool):
-        super().__init__()
+    def __init__(self, is_timed: bool, Id):
+        super().__init__(self,Id)
         self.isTimed = is_timed
     
     def getIsTimed(self):
