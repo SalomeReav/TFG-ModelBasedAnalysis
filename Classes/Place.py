@@ -24,3 +24,6 @@ class Place(Node):
    
     def setTargetArc(self, target):
         self.targetNodes.append(target)
+    
+    def getId(self):
+        return self.Id

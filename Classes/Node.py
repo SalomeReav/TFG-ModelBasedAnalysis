@@ -22,3 +22,7 @@ class Node(ABC):
     @abstractmethod
     def setTargetArc(self, target: arc.Arc):
         self.targetNodes.append(target)
+    
+    @abstractmethod
+    def getId(self):
+        return self.Id
