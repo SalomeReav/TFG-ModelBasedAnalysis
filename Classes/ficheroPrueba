@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='us-ascii'?>
+<net id="n1">
+  <arc source="0xcb3f70" target="0xcb4020" />
+  <arc source="0xcb4008" target="0xcb4020" />
+  <arc source="0xcb4020" target="" />
+  <place id="0xcb3ef0">
+    <name>
+      <value>varId_filename</value>
+    </name>
+  </place>
+  <place id="0xcb3f70">
+    <name>
+      <value>op_1_0xcb3f70</value>
+    </name>
+  </place>
+  <place id="0xcb4008">
+    <name>
+      <value>op_2_0xcb4008</value>
+    </name>
+  </place>
+  <place id="">
+    <name>
+      <value>result_var_0xcb3f70,0xcb4008</value>
+    </name>
+  </place>
+  <transition id="0xcb4020" />
+</net>

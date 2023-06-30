@@ -4,12 +4,12 @@ import Arc as arc
 class Node(ABC):
     def __init__(self, Id ):
         self.Id = Id
-        self.sourceNodes = [] 
-        self.targetNodes= []
+        self.sourceArcs = [] 
+        self.targetArcs= []
     
     @abstractmethod
     def getSourceArcs(self):
-        return self.sourceNodes
+        return self.sourceArcs
     
     @abstractmethod
     def getTargetArcs(self):
@@ -17,11 +17,11 @@ class Node(ABC):
 
     @abstractmethod
     def setSourceArc(self, source: arc.Arc):
-        self.sourceNodes.append(source)
+        self.sourceArcs.append(source)
     
     @abstractmethod
     def setTargetArc(self, target: arc.Arc):
-        self.targetNodes.append(target)
+        self.targetArcs.append(target)
     
     @abstractmethod
     def getId(self):

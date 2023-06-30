@@ -13,17 +13,17 @@ class Transition(Node):
         self.isTimed = isTimed
 
     def getSourceArcs(self):
-        return self.sourceNodes
+        return self.sourceArcs
 
     def getTargetArcs(self):
-        return self.targetNodes
+        return self.targetArcs
 
     def setSourceArc(self, source):
-        self.sourceNodes.append(source)
+        self.targetArcs.append(source)
     
    
     def setTargetArc(self, target):
-        self.targetNodes.append(target)
+        self.targetArcs.append(target)
     
     def getId(self):
         return self.Id

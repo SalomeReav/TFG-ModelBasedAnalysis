@@ -20,10 +20,10 @@ if __name__== "__main__":
     myjson = json.load(j)
 
     net = PetriNet()
-    nodes = list()
 
     '''Find childs Id of the CompoundStmt'''
     Mods.findIdCompound(myjson)
     Mods.classifyNodes(myjson, net)
-    root = ET.Element("root name= \" petriNet")
+    root = ET.Element("net")
+    root.set("id","n1")
     net.writeOuput(root)

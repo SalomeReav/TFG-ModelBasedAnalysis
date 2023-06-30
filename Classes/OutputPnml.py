@@ -3,26 +3,27 @@ import xml.etree.ElementTree as ET
 from Place import Place
 from Transition import Transition
 from Arc import Arc
+from Node import Node
 
 
 class OutputPNML(OutputFormat):
-    #falta implementación  de todo 
     def writeTransition(self,tr: Transition, root: ET):
-        string = "transition id= \"" + tr.Id + "\" isTimed= \"" + str(tr.getIsTimed()) + "\""
-        trans = ET.SubElement(root,string)
-        #return trans
-        #ET.dump(trans)
+        transition = ET.SubElement(root,"transition",{"id":str(tr.getId())})
+
 
     def writePlace(self,pt: Place, root: ET):
-        string = "place id= \"" + pt.Id + "\" name=\"" + pt.nameValue + "\" "
-        place1 = ET.SubElement(root,string)
-        #return place1
-        #ET.dump(place1) 
+        place = ET.SubElement(root,"place",{"id":str(pt.getId())})
+        nameLabel = ET.SubElement(place,"name")
+        nameValue = ET.SubElement(nameLabel,"value")
+        nameValue.text = pt.nameValue
+
+
 
     def writeArc(self, arc: Arc, root: ET):
+        source: Node 
+        target: Node
         source = arc.getsourceNode()
         target= arc.getTargetNode() 
-        string = "arc source= " + str(source) + " "
-        arc1 = ET.SubElement(root,string)
-        #return arc1
-        #ET.dump(arc1)
+
+        arc = ET.SubElement(root,"arc",{"source":str(source.getId()),"target":str(target.getId())})
+
