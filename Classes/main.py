@@ -21,9 +21,13 @@ if __name__== "__main__":
 
     net = PetriNet()
 
-    '''Find childs Id of the CompoundStmt'''
-    Mods.findIdCompound(myjson)
-    Mods.classifyNodes(myjson, net)
+    #comprobar por nodo 
+    for source_file in myjson:
+        current_ast =myjson[source_file]
+        for id in current_ast:
+            Mods.classifyNodes(current_ast,current_ast[id], net)
+
+    #write xml for the petri net
     root = ET.Element("net")
     root.set("id","n1")
     net.writeOuput(root)

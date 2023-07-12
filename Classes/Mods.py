@@ -1,31 +1,27 @@
-from OutputPnml import OutputPNML
 from PetriNet import PetriNet 
 from Place import Place  
 from Transition import Transition 
 from Arc import Arc 
-import xml.etree.ElementTree as ET
-import json
+import Node
 
 
+FUNC_DECL = ["FunctionDecl"]
 DECL_TYPES = ["VarDecl"]
 CONTROL_TYPES = ["IfStmt"]
 CALL_TYPES = ["CallExpr"]
 BINARY_OP = ["BinaryOperator"]
 COMPOUND_STMT = ["CompoundStmt"]
 DECL_STMT = ["DeclStmt"]
-NODES_INTEREST = []
-
-'''returns a list with ids of each node of the structure'''
-def findIdCompound(ast):
-    for key in ast:
-        for value in ast[key]:
-            astKey = ast[key][value]
-            for type in astKey:
-                if  astKey[type] in COMPOUND_STMT:
-                    for id in astKey["inner"]:
-                        NODES_INTEREST.append(id)
+DECL_REFER = ["DeclRefExpr"]
+PARMVAR_DECL = ["ParmVarDecl"]
+CHECKED_NODES = {}
 
 
+def searchNodeById(id, net:PetriNet):
+    for n in net.nodes:
+        if  isinstance(n,Place) or isinstance(n,Transition):
+            if n.getId() == id:
+                return n 
 
 def declstmt(ast,node, net: PetriNet):
     '''check if is a declaration or a definition'''
@@ -41,11 +37,11 @@ def declstmt(ast,node, net: PetriNet):
         net.nodes.append(initialPlace)
         print(net.nodes)
 
-        arcI = Arc(None)
+        arcI = Arc(0)
         arcI.setSourceNode(initialPlace)
         arcI.setTargetNode(t_assig)
 
-        arcAsig = Arc(None)
+        arcAsig = Arc(0)
         arcAsig.setSourceNode(t_assig)
         arcAsig.setTargetNode(finalPlace)
 
@@ -57,48 +53,138 @@ def declstmt(ast,node, net: PetriNet):
          initialPlace = Place("varId_" + ast[varDeclId]["name"],varDeclId)
          net.nodes.append(initialPlace)
 
-def binaryOp(node, net:PetriNet):
-    tOp = Transition(node["id"])
-    leftChild= node["inner"][0]
-    rightChild= node["inner"][1]
+         init = searchNodeById(ast[varDeclId]["parent"])
 
-    op1= Place("op_1_"+ leftChild,leftChild)
-    op2= Place("op_2_"+ rightChild,rightChild)
-    result= Place("result_var_"+leftChild+","+rightChild,"" )
+         union = Arc(0)
+         union.setSourceNode(init)
+         union.setTargetNode(initialPlace)
 
-    net.nodes.append(op1)
-    net.nodes.append(op2)
-    net.nodes.append(result)
+         net.arcs.append(union)
+         
 
-    net.nodes.append(tOp)
 
-    arcP1toTran = Arc(None)
-    arcP1toTran.setSourceNode(op1)
-    arcP1toTran.setTargetNode(tOp)
-    net.arcs.append(arcP1toTran)
+
+def binaryOp(ast, node, net:PetriNet):
+    #comprobar si es un nodo ya existente el resultado ypor tanto
+    #unirlo con el nodo. o si es un resultado como una suma donde hay que crear
+    #el nodo 
+    #AÑADIR EN NOMBRE QUE TIPO DE OP PARA MAS CLARIDAD 
+    operator = Place("BinaryOP_" + node["opcode"], node["id"])
+    p = searchNodeById(node["parent"], net)
+
+    arc = Arc(0)
+    arc.setSourceNode(p)
+    arc.setTargetNode(operator)
+
+    net.nodes.append(operator)
+    net.nodes.append(p)
+    net.arcs.append(arc)
     
-    arcP2toTran = Arc(None)
-    arcP2toTran.setSourceNode(op2)
-    arcP2toTran.setTargetNode(tOp)
-    net.arcs.append(arcP2toTran)
 
-    tOp.setSourceArc(tOp)
-    tOp.setTargetArc(op1)
-    tOp.setTargetArc(op2)
-    #COMPROBAR EL USO DE ESTAS FUNCIONES Y COMO SACARLO EN EL PNML
+def declExpr(ast, node, net: PetriNet):  
+    #parent its a place so we create this kind as a transitoin 
+    #and then we conecct it to the place whose being referenced 
 
-    arcTtoResult = Arc(None)
-    arcTtoResult.setSourceNode(tOp)
-    arcTtoResult.setTargetNode(result)
-    net.arcs.append(arcTtoResult)
+    tDecl = Transition(node["id"])
+    net.nodes.append(tDecl)
+
+    parent = searchNodeById(node["parent"],net)
+
+    union = Arc(0)
+    union.setSourceNode(parent)
+    union.setTargetNode(tDecl)
+    net.arcs.append(union)
+
+    referenced = searchNodeById(node["referencedDecl"]["id"], net)
+    arcToReferenced = Arc(0)
+    arcToReferenced.setSourceNode(tDecl)
+    arcToReferenced.setTargetNode(referenced)
+    net.arcs.append(arcToReferenced)
+
+def implicitCastExpr(ast, node, net:PetriNet):
+    #Recorrer hasta encontrar el DeclRefExpresion guardando que el padre 
+    # es el binary op, PORQUE NO HACE FALTA EL IMPLICIT Y ARRAYSUBDCRIPT 
+    parentId = node["parent"]
+    segChild = node["inner"]
+    terChild = ast[segChild]["inner"][0]
+    fourthChild = ast[terChild]["inner"]
+
+    tDecl = Transition(fourthChild)
+    net.nodes.append(tDecl)
+
+    p = searchNodeById(parentId, net)
+
+    link = Arc(0)
+    link.setSourceNode(p)
+    link.setTargetNode(tDecl)
+    net.arcs.append(link)
+
+    referenced = searchNodeById(ast[fourthChild]["referencedDecl"]["id"], net)
+    arc = Arc(0)
+    arc.setSourceNode(tDecl)
+    arc.setTargetNode(referenced)
+    net.arcs.append(arc)
+
+def functionDecl(ast,node,net: PetriNet):
+    principal = Place(node["name"], node["id"])
+    principal.setInitialMarking(1)
+    net.nodes.append(principal)
+
+    if node["name"] == "main":
+        #PENSAR SI EL NOMBRE ES ADECUADO,  y si al reutilizarlo es mejor ponerlo 
+        #en una variable global
+        tranParm = Transition("t_declMainParams")
+        net.nodes.append(tranParm)
+        arcM = Arc(0)
+        arcM.setSourceNode(principal)
+        arcM.setTargetNode(tranParm)
+        net.arcs.append(arcM)
+
+        for n in node["inner"]:
+            print("entro en inner de main")
+            print(n)
+            print(ast[n]["kind"])
+            if ast[n]["kind"] in PARMVAR_DECL:
+                print(ast[n]["kind"])
+                declNode = Place("ParmVarDecl_" + ast[n]["name"], ast[n]["id"])
+                CHECKED_NODES[node["id"]] = {"type": node["kind"]}
+                net.nodes.append(declNode)
+                arcTran = Arc(0)
+                arcTran.setSourceNode(tranParm)
+                arcTran.setTargetNode(declNode)
+                net.arcs.append(arcTran)
+    else:
+        print("es un functiondecl pero no el main")
 
 
-def classifyNodes(ast, net: PetriNet):
-    for source_file in ast:
-        current_ast =ast[source_file]
-        for c in NODES_INTEREST:
-            if current_ast[c]["kind"] in DECL_STMT:
-                declstmt(current_ast, current_ast[c],net)
-            if current_ast[c]["kind"] in BINARY_OP:
-                binaryOp(current_ast[c], net)
+def compoundStmt(ast,node,net:PetriNet):
+    compoundStart = Transition(node["id"])
+    parent = searchNodeById(node["parent"],net)
+    
+    union = Arc(0)
+    union.setSourceNode(parent)
+    union.setTargetNode(compoundStart)
+
+
+    net.nodes.append(compoundStart)
+    net.nodes.append(parent)
+    net.arcs.append(union)
+    
+#guardar nodos ya recorridos, dic
+def classifyNodes(current_ast,node, net: PetriNet):
+    if node["id"] not in CHECKED_NODES:
+        CHECKED_NODES[node["id"]] = {"type": node["kind"]}
+        c = node["kind"]
+        if c in FUNC_DECL:
+            functionDecl(current_ast,node,net)
+        elif c in COMPOUND_STMT:
+            compoundStmt(current_ast,node,net)
+        elif c in DECL_STMT:
+            declstmt(current_ast, node,net)
+        elif c in BINARY_OP:
+            binaryOp(current_ast,node, net)
+        elif c in DECL_REFER: 
+            pass #declExpr(current_ast,node ,net)
+        #lo que s epuede hacer en el compund es crear el enlace
+        #o transicion 
 

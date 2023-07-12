@@ -3,6 +3,7 @@ from OutputPnml import OutputPNML
 from Place import Place
 from Transition import Transition
 import xml.etree.ElementTree as ET
+import Node
 
 
 
@@ -25,9 +26,6 @@ class PetriNet:
         ET.indent(root)
         et=ET.ElementTree(root)
         et.write("ficheroPrueba", xml_declaration=True)
-        
-    
-
 
 
 

@@ -13,7 +13,7 @@ class Node(ABC):
     
     @abstractmethod
     def getTargetArcs(self):
-        return self.targetNodes
+        return self.targetArcs
 
     @abstractmethod
     def setSourceArc(self, source: arc.Arc):
