@@ -28,6 +28,5 @@ if __name__== "__main__":
             Mods.classifyNodes(current_ast,current_ast[id], net)
 
     #write xml for the petri net
-    root = ET.Element("net")
-    root.set("id","n1")
+    root = ET.Element("pnml")
     net.writeOuput(root)

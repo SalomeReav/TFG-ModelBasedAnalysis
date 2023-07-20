@@ -14,18 +14,19 @@ class PetriNet:
     
     def writeOuput(self,root):
         output = OutputPNML()
-    
-        for arcs in self.arcs:
-            output.writeArc(arcs,root)
+        n = ET.SubElement(root,"net")
         for node in self.nodes:
             if isinstance(node,Place):
-                output.writePlace(node,root)
+                output.writePlace(node,n)
             if isinstance(node,Transition):
-                output.writeTransition(node,root)
+                output.writeTransition(node,n)
+        
+        for arcs in self.arcs:
+            output.writeArc(arcs,n)
         
         ET.indent(root)
         et=ET.ElementTree(root)
-        et.write("ficheroPrueba", xml_declaration=True)
+        et.write("ficheroPrueba.xml", xml_declaration=True, encoding= "UTF-8")
 
 
 
