@@ -143,6 +143,12 @@ def binaryOp( node, net:PetriNet):
     output = Place("Output" + node["kind"], LAST_OUTPUT_ID)
     net.nodes.append(output)
 
+    link = Arc(0)
+    link.setSourceNode(operator)
+    link.setTargetNode(output)
+
+    net.arcs.append(link)
+
 
 def declExpr(node, net: PetriNet):  
     arc = Arc(0)
@@ -158,18 +164,12 @@ def implicitCastExpr(ast, node, net:PetriNet):
     #Recorrer hasta encontrar el DeclRefExpresion guardando que el padre 
     # es el binary op, PORQUE NO HACE FALTA EL IMPLICIT Y ARRAYSUBDCRIPT 
     parentId = node["parent"]
-    print("entro en implicit cast")
     ch = node["inner"][0]
-    print(ch)
 
     global CHECKED_NODES
     while ast[ch]["kind"]  not in DECL_REFER:
-        print("vuelta del while")
-        print(ast[ch]["kind"])
         CHECKED_NODES[ch] = {"type": ast[ch]["kind"]}
-        print(ast[ch]["inner"][0])
         ch = ast[ch]["inner"][0]
-        print("caambio variable")
         
 
     CHECKED_NODES[ch] = {"type": ast[ch]["kind"]}
@@ -182,6 +182,8 @@ def implicitCastExpr(ast, node, net:PetriNet):
     arc.setTargetNode(target)
 
     net.arcs.append(arc)
+
+
     
 #guardar nodos ya recorridos, dic
 def classifyNodes(current_ast,node, net: PetriNet):

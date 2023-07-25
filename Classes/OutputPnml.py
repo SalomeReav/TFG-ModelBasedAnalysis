@@ -4,6 +4,7 @@ from Place import Place
 from Transition import Transition
 from Arc import Arc
 from Node import Node
+import random
 
 
 XPOSITION = 329.0
@@ -22,8 +23,8 @@ class OutputPNML(OutputFormat):
         pos.set("x", str(XPOSTRANSICION))
         pos.set("y", str(YPOSTRANSICION))
 
-        XPOSTRANSICION = XPOSTRANSICION + 30
-        YPOSTRANSICION = YPOSTRANSICION + 30
+        XPOSTRANSICION = XPOSTRANSICION + 50
+        YPOSTRANSICION = YPOSTRANSICION + 50
 
         nameLabel = ET.SubElement(transition,"name")
         nameValue = ET.SubElement(nameLabel,"value")
@@ -40,8 +41,8 @@ class OutputPNML(OutputFormat):
         pos = ET.SubElement(graph,"position")
         pos.set("x",str(XPOSITION))
         pos.set("y",str(YPOSITION))
-        XPOSITION = XPOSITION + 30
-        YPOSITION = YPOSITION + 30
+        XPOSITION = XPOSITION + (35 * random.randint(0,2))
+        YPOSITION = YPOSITION + (35 * random.randint(0,2))
         nameLabel = ET.SubElement(place,"name")
         nameValue = ET.SubElement(nameLabel,"value")
         nameValue.text = pt.nameValue
@@ -58,8 +59,10 @@ class OutputPNML(OutputFormat):
         target= arc.getTargetNode() 
 
         arc1 = ET.SubElement(root,"arc")
-        arc1.set("id",str(source.getId()) + "TO" + str(target.getId()))
+        arc1.set("id",str(source.getId()) + " TO " + str(target.getId()))
         arc1.set("source",str(source.getId()) )
         arc1.set("target",str(target.getId()) )
-        f = ET.SubElement(arc1,"")
+        #f = ET.SubElement(arc1,"")
+        
+        
 

@@ -2,22 +2,14 @@ import xml.etree.ElementTree as ET
 import json
 from PetriNet import PetriNet 
 import Mods
-
-#node types of interest
-DECL_TYPES = ["VarDecl"]
-CONTROL_TYPES = ["IfStmt"]
-CALL_TYPES = ["CallExpr"]
-BINARY_OP = ["BinaryOperator"]
-COMPOUND_STMT = ["CompoundStmt"]
-DECL_STMT = ["DeclStmt"]
-
-
+import sys
 
 
 if __name__== "__main__":
 
-    j = open('curated_astAssig.json')
-    myjson = json.load(j)
+    file = sys.argv[1]
+    jsonGenerated = open(file)
+    myjson = json.load(jsonGenerated)
 
     net = PetriNet()
 

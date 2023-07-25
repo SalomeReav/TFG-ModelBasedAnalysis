@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <pnml>
   <net>
-    <place id="0xcb3e28">
+    <place id="0x74e828">
       <graphics>
         <position x="329.0" y="134.0" />
       </graphics>
@@ -19,18 +19,18 @@
         <graphics x="-5.0" y="35.0" />
       </name>
     </transition>
-    <place id="0xcb3c48">
+    <place id="0x74e648">
       <graphics>
-        <position x="359.0" y="164.0" />
+        <position x="364.0" y="134.0" />
       </graphics>
       <name>
         <value>ParmVarDecl_argc</value>
         <graphics x="-5.0" y="35.0" />
       </name>
     </place>
-    <place id="0xcb3d10">
+    <place id="0x74e710">
       <graphics>
-        <position x="389.0" y="194.0" />
+        <position x="399.0" y="204.0" />
       </graphics>
       <name>
         <value>ParmVarDecl_argv</value>
@@ -39,25 +39,25 @@
     </place>
     <place id="1">
       <graphics>
-        <position x="419.0" y="224.0" />
+        <position x="469.0" y="239.0" />
       </graphics>
       <name>
         <value>OutputMain</value>
         <graphics x="-5.0" y="35.0" />
       </name>
     </place>
-    <transition id="0xcb3f58">
+    <transition id="0x74e958">
       <graphics>
-        <position x="372.0" y="130.0" />
+        <position x="392.0" y="150.0" />
       </graphics>
       <name>
         <value>T</value>
         <graphics x="-5.0" y="35.0" />
       </name>
     </transition>
-    <place id="0xcb3ef0">
+    <place id="0x74e8f0">
       <graphics>
-        <position x="449.0" y="254.0" />
+        <position x="539.0" y="239.0" />
       </graphics>
       <name>
         <value>varId_filename</value>
@@ -66,50 +66,19 @@
     </place>
     <place id="2">
       <graphics>
-        <position x="479.0" y="284.0" />
+        <position x="539.0" y="274.0" />
       </graphics>
       <name>
         <value>OuputDeclStmt</value>
         <graphics x="-5.0" y="35.0" />
       </name>
     </place>
-    <transition id="0xcb4020">
-      <graphics>
-        <position x="402.0" y="160.0" />
-      </graphics>
-      <name>
-        <value>T</value>
-        <graphics x="-5.0" y="35.0" />
-      </name>
-    </transition>
-    <place id="3">
-      <graphics>
-        <position x="509.0" y="314.0" />
-      </graphics>
-      <name>
-        <value>OutputBinaryOperator</value>
-        <graphics x="-5.0" y="35.0" />
-      </name>
-    </place>
-    <arc id="0xcb3e28TOt_FunctionDecl" source="0xcb3e28" target="t_FunctionDecl">
-    </arc>
-    <arc id="t_FunctionDeclTO0xcb3c48" source="t_FunctionDecl" target="0xcb3c48">
-    </arc>
-    <arc id="t_FunctionDeclTO0xcb3d10" source="t_FunctionDecl" target="0xcb3d10">
-    </arc>
-    <arc id="t_FunctionDeclTO1" source="t_FunctionDecl" target="1">
-    </arc>
-    <arc id="1TO0xcb3f58" source="1" target="0xcb3f58">
-    </arc>
-    <arc id="0xcb3f58TO0xcb3ef0" source="0xcb3f58" target="0xcb3ef0">
-    </arc>
-    <arc id="0xcb3f58TO2" source="0xcb3f58" target="2">
-    </arc>
-    <arc id="2TO0xcb4020" source="2" target="0xcb4020">
-    </arc>
-    <arc id="0xcb4020TO0xcb3ef0" source="0xcb4020" target="0xcb3ef0">
-    </arc>
-    <arc id="0xcb4020TO0xcb3d10" source="0xcb4020" target="0xcb3d10">
-    </arc>
+    <arc id="0x74e828 TO t_FunctionDecl" source="0x74e828" target="t_FunctionDecl" />
+    <arc id="t_FunctionDecl TO 0x74e648" source="t_FunctionDecl" target="0x74e648" />
+    <arc id="t_FunctionDecl TO 0x74e710" source="t_FunctionDecl" target="0x74e710" />
+    <arc id="t_FunctionDecl TO 1" source="t_FunctionDecl" target="1" />
+    <arc id="1 TO 0x74e958" source="1" target="0x74e958" />
+    <arc id="0x74e958 TO 0x74e8f0" source="0x74e958" target="0x74e8f0" />
+    <arc id="0x74e958 TO 2" source="0x74e958" target="2" />
   </net>
 </pnml>
