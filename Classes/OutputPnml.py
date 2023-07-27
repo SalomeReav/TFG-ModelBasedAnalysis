@@ -62,7 +62,7 @@ class OutputPNML(OutputFormat):
         arc1.set("id",str(source.getId()) + " TO " + str(target.getId()))
         arc1.set("source",str(source.getId()) )
         arc1.set("target",str(target.getId()) )
-        #f = ET.SubElement(arc1,"")
+        
         
         
 

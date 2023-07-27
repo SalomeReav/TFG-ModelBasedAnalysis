@@ -15,6 +15,8 @@ DECL_STMT = "DeclStmt"
 DECL_REFER = "DeclRefExpr"
 PARMVAR_DECL = "ParmVarDecl"
 IMPLICIT_CAST = "ImplicitCastExpr"
+UNARY_OP = "UnaryOperator"
+UNARY_OPEXPR = "UnaryExprOrTypeTraitExpr"
 
 '''List for checked nodes and last ouput place for connect figures'''
 CHECKED_NODES = {}
@@ -124,10 +126,7 @@ def declstmt(ast,node, net: PetriNet):
         CHECKED_NODES[varDeclId] = {"type":ast[varDeclId]["kind"]}
 
 def binaryOp( node, net:PetriNet):
-    #comprobar si es un nodo ya existente el resultado ypor tanto
-    #unirlo con el nodo. o si es un resultado como una suma donde hay que crear
-    #el nodo 
-    #AÑADIR EN NOMBRE QUE TIPO DE OP PARA MAS CLARIDAD 
+
     operator = Transition(node["id"])
 
     global LAST_OUTPUT_ID
@@ -183,8 +182,31 @@ def implicitCastExpr(ast, node, net:PetriNet):
 
     net.arcs.append(arc)
 
+def unaryOp(node, net: PetriNet):
+    tranOp = Transition(node["id"])
 
-    
+    net.nodes.append(tranOp)
+
+    global LAST_OUTPUT_ID
+    input = searchNodeById(LAST_OUTPUT_ID, net)
+
+    arc = Arc(0)
+    arc.setSourceNode(input)
+    arc.setTargetNode(tranOp)
+
+    net.arcs.append(arc)
+
+    LAST_OUTPUT_ID = LAST_OUTPUT_ID + 1
+    output = Place("Output" + node["kind"], LAST_OUTPUT_ID)
+    net.nodes.append(output)
+
+    link = Arc(0)
+    link.setSourceNode(tranOp)
+    link.setTargetNode(output)
+
+    net.arcs.append(link)
+
+
 #guardar nodos ya recorridos, dic
 def classifyNodes(current_ast,node, net: PetriNet):
     global CHECKED_NODES
