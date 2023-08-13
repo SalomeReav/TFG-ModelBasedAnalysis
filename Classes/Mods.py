@@ -31,29 +31,18 @@ def searchNodeById(id, net:PetriNet):
                 return n 
 
 def functionDecl(ast,node,net: PetriNet):
-    principal = Place(node["name"], node["id"])
+    principal = Place("input_main", "0")
     principal.setInitialMarking(1)
     net.nodes.append(principal)
 
 
-    tranParm = Transition("t_"+node["kind"])
+    tranParm = Transition(node["id"])
     net.nodes.append(tranParm)
 
     arcM = Arc(0)
     arcM.setSourceNode(principal)
     arcM.setTargetNode(tranParm)
     net.arcs.append(arcM)
-
-    global CHECKED_NODES
-    for n in node["inner"]:
-        if ast[n]["kind"] in PARMVAR_DECL:
-            declNode = Place("ParmVarDecl_" + ast[n]["name"], ast[n]["id"])
-            CHECKED_NODES[node["id"]] = {"type": node["kind"]}
-            net.nodes.append(declNode)
-            arcTran = Arc(0)
-            arcTran.setSourceNode(tranParm)
-            arcTran.setTargetNode(declNode)
-            net.arcs.append(arcTran)
 
     global LAST_OUTPUT_ID
     output = Place("OutputMain", LAST_OUTPUT_ID)
@@ -64,66 +53,69 @@ def functionDecl(ast,node,net: PetriNet):
     arcToOutput.setTargetNode(output)
     net.arcs.append(arcToOutput)
 
+def parmDecl(ast,node,net:PetriNet):
+    parm = Place(node["name"],node["id"])
+    net.nodes.append(parm)
+
+    parent = searchNodeById(node["parent"],net)
+    arc= Arc(0)
+    arc.setSourceNode(parent)
+    arc.setTargetNode(parm)
+    net.arcs.append(arc)
 
 def declstmt(ast,node, net: PetriNet):
-    '''check if is a declaration or a definition'''
-    #TO DO: REVISAR Y CAMBIAR ELEMENTOS, DESACTUALIZADO 
+    '''common structure even if it's a declaration or definition'''
     varDeclId = node["inner"][0]
+
+    tDcl = Transition(node["id"])
+    net.nodes.append(tDcl)
+
+    global LAST_OUTPUT_ID
+    outputTotran = Arc(0)
+    tOutput = searchNodeById(LAST_OUTPUT_ID, net)
+    outputTotran.setSourceNode(tOutput)
+    outputTotran.setTargetNode(tDcl)
+    net.arcs.append(outputTotran)
+
+    initialPlace = Place("varId_" + ast[varDeclId]["name"],varDeclId)
+    net.nodes.append(initialPlace)
+
+    union = Arc(0)
+    union.setSourceNode(tDcl)
+    union.setTargetNode(initialPlace)
+
+    net.arcs.append(union)
+
+    '''creation of ouput node for following structure'''
+    LAST_OUTPUT_ID = LAST_OUTPUT_ID + 1
+    outputP = Place("Ouput" + node["kind"], LAST_OUTPUT_ID )
+    net.nodes.append(outputP)
+
+    arcToOuput = Arc(0)
+    arcToOuput.setSourceNode(tDcl)
+    arcToOuput.setTargetNode(outputP)
+    net.arcs.append(arcToOuput)
+
+    '''append varDecl id as checked node'''
+    CHECKED_NODES[varDeclId] = {"type":ast[varDeclId]["kind"]}
+    
+    '''in case it is a definition we need to create the place of the assignation'''
     if "inner" in ast[varDeclId]:
-        #its a variable definition 
-        initialPlace = Place("initialValue"+ ast[varDeclId]["name"],varDeclId)
-        #comprobar transicion 
-        t_assig = Transition("t_assig")
-        finalPlace = Place("VarID",ast[varDeclId]["inner"][0])
-        net.nodes.append(t_assig)
-        net.nodes.append(finalPlace)
-        net.nodes.append(initialPlace)
-        print(net.nodes)
+        child = ast[varDeclId]["inner"][0]
+        '''modify this kind check if it is not necessary to know it'''
+        if ast[child]["kind"] == "IntegerLiteral":
+            result = Place("var_" + child + "_" + ast[child]["value"], child)
 
-        arcI = Arc(0)
-        arcI.setSourceNode(initialPlace)
-        arcI.setTargetNode(t_assig)
+            arcToResult = Arc(0)
+            arcToResult.setSourceNode(tDcl)
+            arcToResult.setTargetNode(result)
 
-        arcAsig = Arc(0)
-        arcAsig.setSourceNode(t_assig)
-        arcAsig.setTargetNode(finalPlace)
+            net.nodes.append(result)
+            net.arcs.append(arcToResult)
 
-        net.arcs.append(arcI)
-        net.arcs.append(arcAsig)
-    else:
-         #its a variable declaration 
-         #to do: add initial marking 
-        tDcl = Transition(node["id"])
-        net.nodes.append(tDcl)
-
-        global LAST_OUTPUT_ID
-        outputTotran = Arc(0)
-        tOutput = searchNodeById(LAST_OUTPUT_ID, net)
-        outputTotran.setSourceNode(tOutput)
-        outputTotran.setTargetNode(tDcl)
-        net.arcs.append(outputTotran)
-
-        initialPlace = Place("varId_" + ast[varDeclId]["name"],varDeclId)
-        net.nodes.append(initialPlace)
-
-        union = Arc(0)
-        union.setSourceNode(tDcl)
-        union.setTargetNode(initialPlace)
-
-        net.arcs.append(union)
-
-        '''creation of ouput node for following structure'''
-        LAST_OUTPUT_ID = LAST_OUTPUT_ID + 1
-        outputP = Place("Ouput" + node["kind"], LAST_OUTPUT_ID )
-        net.nodes.append(outputP)
-
-        arcToOuput = Arc(0)
-        arcToOuput.setSourceNode(tDcl)
-        arcToOuput.setTargetNode(outputP)
-        net.arcs.append(arcToOuput)
-
-        '''append varDecl id as checked node'''
-        CHECKED_NODES[varDeclId] = {"type":ast[varDeclId]["kind"]}
+            CHECKED_NODES[child] = {"type":ast[child]["kind"]}
+       
+   
 
 def binaryOp( node, net:PetriNet):
 
@@ -206,6 +198,57 @@ def unaryOp(node, net: PetriNet):
 
     net.arcs.append(link)
 
+def ifStmt(current_ast, node, net: PetriNet):
+
+    trueChild = node["inner"][1]
+
+    '''TO DO parte de else gestion'''
+    if "haselse" in current_ast[node]:
+        falseChild = node["inner"][2]
+
+    tEval = Transition(node["id"])
+ 
+    net.nodes.append(tEval)
+
+    global LAST_OUTPUT_ID
+    input= searchNodeById(LAST_OUTPUT_ID,net)
+    connect = Arc(0)
+    connect.setSourceNode(input)
+    connect.setTargetNode(tEval)
+    net.arcs.append(connect)
+
+    LAST_OUTPUT_ID = LAST_OUTPUT_ID + 1
+    inter = Place("Conexion Place", LAST_OUTPUT_ID)
+    net.nodes.append(inter)
+
+    '''conect teval with inter'''
+    arc = Arc(0)
+    arc.setSourceNode(tEval)
+    arc.setTargetNode(inter)
+    net.arcs.append(arc)
+
+
+    tTrue = Transition(trueChild)
+    net.nodes.append(tTrue)
+
+
+    l = Arc(0)
+    l.setSourceNode(inter)
+    l.setTargetNode(tTrue)
+    net.arcs.append(l)
+
+    
+    '''find action block'''
+    global CHECKED_NODES
+    while current_ast[ch]["kind"]  not in DECL_REFER:
+        CHECKED_NODES[ch] = {"type": current_ast[ch]["kind"]}
+        ch = current_ast[ch]["inner"][0]
+        
+
+    CHECKED_NODES[ch] = {"type": current_ast[ch]["kind"]}
+
+
+
 
 #guardar nodos ya recorridos, dic
 def classifyNodes(current_ast,node, net: PetriNet):
@@ -215,6 +258,8 @@ def classifyNodes(current_ast,node, net: PetriNet):
         c = node["kind"]
         if c == FUNC_DECL:
             functionDecl(current_ast,node,net)
+        elif c == PARMVAR_DECL:
+            parmDecl(current_ast,node,net)
         elif c == DECL_STMT:
             declstmt(current_ast, node,net)
         elif c == BINARY_OP:
