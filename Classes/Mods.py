@@ -14,13 +14,15 @@ COMPOUND_STMT = "CompoundStmt"
 DECL_STMT = "DeclStmt"
 DECL_REFER = "DeclRefExpr"
 PARMVAR_DECL = "ParmVarDecl"
-IMPLICIT_CAST = "ImplicitCastExpr"
+INTEGER_LITERAL = "IntegerLiteral"
+STRING_LITERAL = "StringLiteral"
 UNARY_OP = "UnaryOperator"
 UNARY_OPEXPR = "UnaryExprOrTypeTraitExpr"
 
 '''List for checked nodes and last ouput place for connect figures'''
 CHECKED_NODES = {}
 LAST_OUTPUT_ID = 1 
+LAST_PARENT_ID = 0
 
 
 
@@ -29,6 +31,7 @@ def searchNodeById(id, net:PetriNet):
         if  isinstance(n,Place) or isinstance(n,Transition):
             if n.getId() == id:
                 return n 
+    return None
 
 def functionDecl(ast,node,net: PetriNet):
     principal = Place("input_main", "0")
@@ -64,7 +67,7 @@ def parmDecl(ast,node,net:PetriNet):
     net.arcs.append(arc)
 
 def declstmt(ast,node, net: PetriNet):
-    '''common structure even if it's a declaration or definition'''
+
     varDeclId = node["inner"][0]
 
     tDcl = Transition(node["id"])
@@ -99,25 +102,54 @@ def declstmt(ast,node, net: PetriNet):
     '''append varDecl id as checked node'''
     CHECKED_NODES[varDeclId] = {"type":ast[varDeclId]["kind"]}
     
-    '''in case it is a definition we need to create the place of the assignation'''
+    '''in case it is a definition we put this node as last father'''
     if "inner" in ast[varDeclId]:
-        child = ast[varDeclId]["inner"][0]
-        '''modify this kind check if it is not necessary to know it'''
-        if ast[child]["kind"] == "IntegerLiteral":
-            result = Place("var_" + child + "_" + ast[child]["value"], child)
+        global LAST_PARENT_ID
+        LAST_PARENT_ID = node["id"]
+     
 
-            arcToResult = Arc(0)
-            arcToResult.setSourceNode(tDcl)
-            arcToResult.setTargetNode(result)
+def declExpr(node, net: PetriNet):
+    global LAST_PARENT_ID
+    source = searchNodeById(LAST_PARENT_ID,net)
 
-            net.nodes.append(result)
-            net.arcs.append(arcToResult)
+    target = searchNodeById(node["referencedDecl"]["id"],net)  
+    if target == None:
+        #if the referenced variable does not exist yet create it and add to nodes list
+        target = Place(node['referencedDecl']["name"], node['referencedDecl']["id"])
+        net.nodes.append(target)
+    
+    arc = Arc(0)
+    arc.setSourceNode(target)
+    arc.setTargetNode(source)
+    net.arcs.append(arc)
 
-            CHECKED_NODES[child] = {"type":ast[child]["kind"]}
-       
-   
+def integerLiteral(node,net:PetriNet):
+    global LAST_PARENT_ID
+    p = searchNodeById(LAST_PARENT_ID,net)
+    lit = Place(node["kind"] + "_" + node["value"],node["id"])
+    net.nodes.append(lit)
+    if isinstance(p,Transition):
 
-def binaryOp( node, net:PetriNet):
+
+        arc = Arc(0)
+        arc.setSourceNode(p)
+        arc.setTargetNode(lit)
+        net.arcs.append(arc)
+    else:
+        t = Transition(node["id"])
+        net.nodes.append(t)
+        
+        arc = Arc(0)
+        arc.setSourceNode(p)
+        arc.setTargetNode(t)
+        net.arcs.append(arc)
+
+        arcFinal = Arc(0)
+        arcFinal.setSourceNode(t)
+        arcFinal.setTargetNode(lit)
+        net.arcs.append(arcFinal)
+
+def binaryOp( ast, node, net:PetriNet):
 
     operator = Transition(node["id"])
 
@@ -140,39 +172,20 @@ def binaryOp( node, net:PetriNet):
 
     net.arcs.append(link)
 
+    global LAST_PARENT_ID
+    LAST_PARENT_ID = node["id"]
 
-def declExpr(node, net: PetriNet):  
-    arc = Arc(0)
-    source = searchNodeById(node["parent"],net)
-    target = searchNodeById(node["referencedDecl"]["id"],net)
+    '''in case its parent is a declaration'''
+    
+    if ast[node["parent"]]["kind"]== DECL_TYPES:
+        print("entro en arco de cl con bop")
+        dcl = searchNodeById(node["parent"],net)
+        link = Arc(0)
+        link.setSourceNode(operator)
+        link.setTargetNode(dcl)
 
-    arc.setSourceNode(source)
-    arc.setTargetNode(target)
+        net.arcs.append(link)
 
-    net.arcs.append(arc)
-
-def implicitCastExpr(ast, node, net:PetriNet):
-    #Recorrer hasta encontrar el DeclRefExpresion guardando que el padre 
-    # es el binary op, PORQUE NO HACE FALTA EL IMPLICIT Y ARRAYSUBDCRIPT 
-    parentId = node["parent"]
-    ch = node["inner"][0]
-
-    global CHECKED_NODES
-    while ast[ch]["kind"]  not in DECL_REFER:
-        CHECKED_NODES[ch] = {"type": ast[ch]["kind"]}
-        ch = ast[ch]["inner"][0]
-        
-
-    CHECKED_NODES[ch] = {"type": ast[ch]["kind"]}
-
-    arc = Arc(0)
-    source = searchNodeById(parentId,net)
-    target = searchNodeById(ast[ch]["referencedDecl"]["id"],net)
-
-    arc.setSourceNode(source)
-    arc.setTargetNode(target)
-
-    net.arcs.append(arc)
 
 def unaryOp(node, net: PetriNet):
     tranOp = Transition(node["id"])
@@ -199,55 +212,129 @@ def unaryOp(node, net: PetriNet):
     net.arcs.append(link)
 
 def ifStmt(current_ast, node, net: PetriNet):
-
-    trueChild = node["inner"][1]
-
-    '''TO DO parte de else gestion'''
-    if "haselse" in current_ast[node]:
-        falseChild = node["inner"][2]
-
-    tEval = Transition(node["id"])
- 
-    net.nodes.append(tEval)
+    '''set the id of this node as Last parent'''
 
     global LAST_OUTPUT_ID
-    input= searchNodeById(LAST_OUTPUT_ID,net)
-    connect = Arc(0)
-    connect.setSourceNode(input)
-    connect.setTargetNode(tEval)
-    net.arcs.append(connect)
+    p = searchNodeById(LAST_OUTPUT_ID,net)
+    t_eval = Transition(node["id"])
+    net.nodes.append(t_eval)
+    
+    global LAST_PARENT_ID
+    LAST_PARENT_ID = node["id"]
 
-    LAST_OUTPUT_ID = LAST_OUTPUT_ID + 1
-    inter = Place("Conexion Place", LAST_OUTPUT_ID)
-    net.nodes.append(inter)
 
-    '''conect teval with inter'''
-    arc = Arc(0)
-    arc.setSourceNode(tEval)
-    arc.setTargetNode(inter)
+    arc =Arc(0)
+    arc.setSourceNode(p)
+    arc.setTargetNode(t_eval)
     net.arcs.append(arc)
 
 
-    tTrue = Transition(trueChild)
-    net.nodes.append(tTrue)
-
+    LAST_OUTPUT_ID = LAST_OUTPUT_ID +1 
+    output = Place("Output" + node["kind"], LAST_OUTPUT_ID)
+    net.nodes.append(output)
 
     l = Arc(0)
-    l.setSourceNode(inter)
-    l.setTargetNode(tTrue)
+    l.setSourceNode(t_eval)
+    l.setTargetNode(output)
     net.arcs.append(l)
 
+def compoundIfstmt(ast, node,net:PetriNet):
+
+    if ast[node["parent"]]["kind"] == CONTROL_TYPES:
+
+        '''if it is the second child we identify as the true branch'''
+        if  ast[node["parent"]]["inner"][1] == node["id"]:
+            print("entro en true branch del if")
+            t_true = Transition("t_true")
+            net.nodes.append(t_true)
+            global LAST_OUTPUT_ID
+            input = searchNodeById(LAST_OUTPUT_ID, net)
+
+            arc = Arc(0)
+            arc.setSourceNode(input)
+            arc.setTargetNode(t_true)
+            net.arcs.append(arc)
+
+            LAST_OUTPUT_ID = LAST_OUTPUT_ID + 1
+            mid = Place("OuputTrueBranch", LAST_OUTPUT_ID)
+            net.nodes.append(mid)
+            
+            l2=Arc(0)
+            l2.setSourceNode(t_true)
+            l2.setTargetNode(mid)
+            net.arcs.append(l2)
+
+            actionBlock = Transition(node["id"])
+            net.nodes.append(actionBlock)
+
+            a = Arc(0)
+            a.setSourceNode(mid)
+            a.setTargetNode(actionBlock)
+            net.arcs.append(a)
+
+            LAST_OUTPUT_ID = LAST_OUTPUT_ID + 1
+            output = Place("Output_Ifstmt", LAST_OUTPUT_ID)
+            net.nodes.append(output)
+
+            actToOutput = Arc(0)
+            actToOutput.setSourceNode(actionBlock)
+            actToOutput.setTargetNode(output)
+            net.arcs.append(actToOutput)
+
+            LAST_PARENT_ID = node["id"]
+        elif len(ast[node["parent"]]["inner"]) > 2:
+            print("entro en rama False del if")
+            t_false = Transition("t_false")
+            net.nodes.append(t_false)
+            global LAST_OUTPUT_ID
+            input = searchNodeById(LAST_OUTPUT_ID, net)
+
+            arc = Arc(0)
+            arc.setSourceNode(input)
+            arc.setTargetNode(t_false)
+            net.arcs.append(arc)
+
+            LAST_OUTPUT_ID = LAST_OUTPUT_ID + 1
+            mid = Place("OuputTrueBranch", LAST_OUTPUT_ID)
+            net.nodes.append(mid)
+            
+            l2=Arc(0)
+            l2.setSourceNode(t_true)
+            l2.setTargetNode(mid)
+            net.arcs.append(l2)
+
+            actionBlock = Transition(node["id"])
+            net.nodes.append(actionBlock)
+
+            a = Arc(0)
+            a.setSourceNode(mid)
+            a.setTargetNode(actionBlock)
+            net.arcs.append(a)
+
+            LAST_OUTPUT_ID = LAST_OUTPUT_ID + 1
+            output = Place("Output_Ifstmt", LAST_OUTPUT_ID)
+            net.nodes.append(output)
+
+            actToOutput = Arc(0)
+            actToOutput.setSourceNode(actionBlock)
+            actToOutput.setTargetNode(output)
+            net.arcs.append(actToOutput)
+
+
+def stringLiteral(node, net:PetriNet):
+    s = Place(node["kind"] + node["value"], node["id"])
+    net.nodes.append(s)
+
+    global LAST_PARENT_ID
+    p = searchNodeById(LAST_PARENT_ID,net)
+
+    a = Arc(0)
+    a.setSourceNode(p)
+    a.setTargetNode(s)
+    net.arcs.append(a)
+
     
-    '''find action block'''
-    global CHECKED_NODES
-    while current_ast[ch]["kind"]  not in DECL_REFER:
-        CHECKED_NODES[ch] = {"type": current_ast[ch]["kind"]}
-        ch = current_ast[ch]["inner"][0]
-        
-
-    CHECKED_NODES[ch] = {"type": current_ast[ch]["kind"]}
-
-
+  
 
 
 #guardar nodos ya recorridos, dic
@@ -263,11 +350,17 @@ def classifyNodes(current_ast,node, net: PetriNet):
         elif c == DECL_STMT:
             declstmt(current_ast, node,net)
         elif c == BINARY_OP:
-            binaryOp(node, net)
+            binaryOp(current_ast,node, net)
         elif c == DECL_REFER: 
             declExpr(node ,net)
-        elif c == IMPLICIT_CAST: 
-            implicitCastExpr(current_ast, node, net)
+        elif c == INTEGER_LITERAL: 
+           integerLiteral(node, net)
+        elif c == CONTROL_TYPES:
+            ifStmt(current_ast,node,net)
+        elif c == COMPOUND_STMT:
+            compoundIfstmt(current_ast,node,net)
+        elif c == STRING_LITERAL:
+            stringLiteral(node,net)
         #lo que s epuede hacer en el compund es crear el enlace
         #o transicion 
 

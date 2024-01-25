@@ -8,6 +8,7 @@ import sys
 if __name__== "__main__":
 
     file = sys.argv[1]
+    
     jsonGenerated = open(file)
     myjson = json.load(jsonGenerated)
 
