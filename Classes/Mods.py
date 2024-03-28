@@ -123,6 +123,7 @@ def declExpr(node, net: PetriNet):
     arc.setTargetNode(source)
     net.arcs.append(arc)
 
+
 def integerLiteral(node,net:PetriNet):
     global LAST_PARENT_ID
     p = searchNodeById(LAST_PARENT_ID,net)
@@ -134,8 +135,12 @@ def integerLiteral(node,net:PetriNet):
         arc = Arc(0)
         arc.setSourceNode(p)
         arc.setTargetNode(lit)
+        arc.setSourceNode(lit)
+        arc.setTargetNode(p)        
         net.arcs.append(arc)
-    else:
+         
+    else: 
+        '''REVISAR SI ES NECESARIO LO DE DISTINGUIR SI ES TRANSI O LUGAR, CREO QUE NO '''  
         t = Transition(node["id"])
         net.nodes.append(t)
         
@@ -153,40 +158,58 @@ def binaryOp( ast, node, net:PetriNet):
 
     operator = Transition(node["id"])
 
-    global LAST_OUTPUT_ID
-    input = searchNodeById(LAST_OUTPUT_ID,net)
-    arc = Arc(0)
-    arc.setSourceNode(input)
-    arc.setTargetNode(operator)
+    '''in case its parent is an IF we need its own input'''
 
-    net.nodes.append(operator)
-    net.arcs.append(arc)
+    if ast[node["parent"]]["kind"]== CONTROL_TYPES:
+        '''cambiar id, este de momento para probar'''
+        input = Place("OutputToBO", 99)
+        arc = Arc(0)
+        arc.setSourceNode(input)
+        arc.setTargetNode(operator)
 
-    LAST_OUTPUT_ID = LAST_OUTPUT_ID + 1 
-    output = Place("Output" + node["kind"], LAST_OUTPUT_ID)
-    net.nodes.append(output)
+        net.nodes.append(operator)
+        net.nodes.append(input)
+        net.arcs.append(arc)
 
-    link = Arc(0)
-    link.setSourceNode(operator)
-    link.setTargetNode(output)
+        padre = searchNodeById(node["parent"],net)
 
-    net.arcs.append(link)
-
-    global LAST_PARENT_ID
-    LAST_PARENT_ID = node["id"]
-
-    '''in case its parent is a declaration'''
-    
-    if ast[node["parent"]]["kind"]== DECL_TYPES:
-        print("entro en arco de cl con bop")
+        arc = Arc(0)
+        arc.setSourceNode(padre)
+        arc.setTargetNode(input)
+        net.arcs.append(arc)
+    elif ast[node["parent"]]["kind"]== DECL_TYPES:
+        '''in case its parent is a declaration'''
         dcl = searchNodeById(node["parent"],net)
         link = Arc(0)
         link.setSourceNode(operator)
         link.setTargetNode(dcl)
+        '''NO ESTA CONECTADO EL ARCO AL MAIN PRINCIPAL'''
+
+        net.arcs.append(link)
+    else:
+        global LAST_OUTPUT_ID
+        input = searchNodeById(LAST_OUTPUT_ID,net)
+        arc = Arc(0)
+        arc.setSourceNode(input)
+        arc.setTargetNode(operator)
+
+        net.nodes.append(operator)
+        net.arcs.append(arc)
+
+        LAST_OUTPUT_ID = LAST_OUTPUT_ID + 1 
+        output = Place("Output" + node["kind"], LAST_OUTPUT_ID)
+        net.nodes.append(output)
+
+        link = Arc(0)
+        link.setSourceNode(operator)
+        link.setTargetNode(output)
 
         net.arcs.append(link)
 
-
+    global LAST_PARENT_ID
+    LAST_PARENT_ID = node["id"]
+    net.nodes.append(operator)
+    
 def unaryOp(node, net: PetriNet):
     tranOp = Transition(node["id"])
 
@@ -211,11 +234,23 @@ def unaryOp(node, net: PetriNet):
 
     net.arcs.append(link)
 
-def ifStmt(current_ast, node, net: PetriNet):
-    '''set the id of this node as Last parent'''
+def ifStmt(ast, node, net: PetriNet):
 
-    global LAST_OUTPUT_ID
-    p = searchNodeById(LAST_OUTPUT_ID,net)
+    '''si este nodo if es un una rama de otro if principal, por ejemplo 
+    en el caso de un ElseIf, es un if que consta dentro de la rama false de 
+    otro if principal. Cuando esto ocurra lo que hay que hacer es enlazar el 
+    if con el nodo ooutput del if principal'''
+    if ast[node["parent"]]["kind"] == CONTROL_TYPES:
+
+        idLastOuputParent = CHECKED_NODES[node["parent"]]["outputIf"] 
+        p = searchNodeById(idLastOuputParent, net)
+    else:
+        global LAST_OUTPUT_ID
+        p = searchNodeById(LAST_OUTPUT_ID,net)
+
+
+    '''set the id of this node as Last parent'''
+   
     t_eval = Transition(node["id"])
     net.nodes.append(t_eval)
     
@@ -228,10 +263,18 @@ def ifStmt(current_ast, node, net: PetriNet):
     arc.setTargetNode(t_eval)
     net.arcs.append(arc)
 
+    '''pensar como guardar el output porque la rama else la necesita.
+    Idea primera es meter el id del output en la lista de cheked nodes como 
+    hijo del nodo if principal. asi poder buscarlo cuando se llegue al else'''
+    #borrar esto de arriba cuando se compruebe que es correcto lo que se intenta hacer
 
     LAST_OUTPUT_ID = LAST_OUTPUT_ID +1 
     output = Place("Output" + node["kind"], LAST_OUTPUT_ID)
     net.nodes.append(output)
+
+    '''guardo en el nodo padre if, el id del ouput para luego en el nodo else
+    buscar ese id y partir de ahi'''
+    CHECKED_NODES[node["id"]]["outputIf"] = LAST_OUTPUT_ID
 
     l = Arc(0)
     l.setSourceNode(t_eval)
@@ -239,15 +282,16 @@ def ifStmt(current_ast, node, net: PetriNet):
     net.arcs.append(l)
 
 def compoundIfstmt(ast, node,net:PetriNet):
+    global LAST_OUTPUT_ID
 
     if ast[node["parent"]]["kind"] == CONTROL_TYPES:
 
         '''if it is the second child we identify as the true branch'''
         if  ast[node["parent"]]["inner"][1] == node["id"]:
-            print("entro en true branch del if")
-            t_true = Transition("t_true")
+
+            t_true = Transition("t_true_"+ str(LAST_OUTPUT_ID))
             net.nodes.append(t_true)
-            global LAST_OUTPUT_ID
+            
             input = searchNodeById(LAST_OUTPUT_ID, net)
 
             arc = Arc(0)
@@ -264,6 +308,7 @@ def compoundIfstmt(ast, node,net:PetriNet):
             l2.setTargetNode(mid)
             net.arcs.append(l2)
 
+            '''AQUI ESTA EL PROBLEMO PORQUE NO RESUELVO EL ACOITN BLOCK'''
             actionBlock = Transition(node["id"])
             net.nodes.append(actionBlock)
 
@@ -271,35 +316,45 @@ def compoundIfstmt(ast, node,net:PetriNet):
             a.setSourceNode(mid)
             a.setTargetNode(actionBlock)
             net.arcs.append(a)
+            '''En caso de que sean if anidados cierra todo en un solo output'''
+            abu = ast[node["parent"]]["parent"]
+            if ast[abu]["kind"] == CONTROL_TYPES:
+                ant = CHECKED_NODES[abu]["finalOutput"]
+                output = searchNodeById(ant, net)
 
-            LAST_OUTPUT_ID = LAST_OUTPUT_ID + 1
-            output = Place("Output_Ifstmt", LAST_OUTPUT_ID)
-            net.nodes.append(output)
+                '''guardo el lugar de cierre de ifs'''
+                CHECKED_NODES[node["parent"]]["finalOutput"] = ant
+            else:
+                LAST_OUTPUT_ID = LAST_OUTPUT_ID + 1
+                output = Place("Output_If", LAST_OUTPUT_ID)
+                net.nodes.append(output)
 
-            actToOutput = Arc(0)
-            actToOutput.setSourceNode(actionBlock)
-            actToOutput.setTargetNode(output)
-            net.arcs.append(actToOutput)
+                '''guardo el lugar de cierre de ifs'''
+                CHECKED_NODES[node["parent"]]["finalOutput"] = LAST_OUTPUT_ID
 
+
+            global LAST_PARENT_ID
             LAST_PARENT_ID = node["id"]
-        elif len(ast[node["parent"]]["inner"]) > 2:
-            print("entro en rama False del if")
-            t_false = Transition("t_false")
+        elif ast[node["parent"]]["hasElse"] == True:
+
+            t_false = Transition("t_false_"+ str(LAST_OUTPUT_ID))
             net.nodes.append(t_false)
-            global LAST_OUTPUT_ID
-            input = searchNodeById(LAST_OUTPUT_ID, net)
+            idLastOuputParent = CHECKED_NODES[node["parent"]]["outputIf"] 
+          
+            input = searchNodeById(idLastOuputParent, net)
 
             arc = Arc(0)
             arc.setSourceNode(input)
             arc.setTargetNode(t_false)
             net.arcs.append(arc)
+  
 
             LAST_OUTPUT_ID = LAST_OUTPUT_ID + 1
             mid = Place("OuputTrueBranch", LAST_OUTPUT_ID)
             net.nodes.append(mid)
             
             l2=Arc(0)
-            l2.setSourceNode(t_true)
+            l2.setSourceNode(t_false)
             l2.setTargetNode(mid)
             net.arcs.append(l2)
 
@@ -311,14 +366,19 @@ def compoundIfstmt(ast, node,net:PetriNet):
             a.setTargetNode(actionBlock)
             net.arcs.append(a)
 
-            LAST_OUTPUT_ID = LAST_OUTPUT_ID + 1
-            output = Place("Output_Ifstmt", LAST_OUTPUT_ID)
-            net.nodes.append(output)
+  
+            LAST_PARENT_ID = node["id"]
+           
 
-            actToOutput = Arc(0)
-            actToOutput.setSourceNode(actionBlock)
-            actToOutput.setTargetNode(output)
-            net.arcs.append(actToOutput)
+            idCloseOutput = CHECKED_NODES[node["parent"]]["finalOutput"]
+            output = searchNodeById(idCloseOutput, net) 
+    
+
+        actToOutput = Arc(0)
+        actToOutput.setSourceNode(actionBlock)
+        actToOutput.setTargetNode(output)
+        net.arcs.append(actToOutput)
+       
 
 
 def stringLiteral(node, net:PetriNet):
@@ -333,15 +393,15 @@ def stringLiteral(node, net:PetriNet):
     a.setTargetNode(s)
     net.arcs.append(a)
 
+
     
-  
 
 
 #guardar nodos ya recorridos, dic
 def classifyNodes(current_ast,node, net: PetriNet):
     global CHECKED_NODES
     if node["id"] not in CHECKED_NODES:
-        CHECKED_NODES[node["id"]] = {"type": node["kind"]}
+        CHECKED_NODES[node["id"]] = {"type": node["kind"],"outputIf": None, "finalOutput":None}
         c = node["kind"]
         if c == FUNC_DECL:
             functionDecl(current_ast,node,net)
