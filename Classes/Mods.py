@@ -18,6 +18,7 @@ INTEGER_LITERAL = "IntegerLiteral"
 STRING_LITERAL = "StringLiteral"
 UNARY_OP = "UnaryOperator"
 UNARY_OPEXPR = "UnaryExprOrTypeTraitExpr"
+RETURN_STMT = "ReturnStmt"
 
 '''List for checked nodes and last ouput place for connect figures'''
 CHECKED_NODES = {}
@@ -393,6 +394,26 @@ def stringLiteral(node, net:PetriNet):
     a.setTargetNode(s)
     net.arcs.append(a)
 
+def returnStmt(node, net: PetriNet):
+
+    global LAST_OUTPUT_ID, LAST_PARENT_ID
+    rtn = Transition(node['id'])
+    net.nodes.append(rtn)
+    entry = searchNodeById(LAST_OUTPUT_ID,net)
+
+    arc = Arc(0)
+    arc.setSourceNode(entry)
+    arc.setTargetNode(rtn)
+    net.arcs.append(arc)
+
+    LAST_OUTPUT_ID = LAST_OUTPUT_ID +1
+    ouput = Place("OutputRtn", LAST_OUTPUT_ID)
+    net.nodes.append(ouput)
+
+    arc2 = Arc(0)
+    arc2.setSourceNode(rtn)
+    arc2.setTargetNode(ouput)
+    net.arcs.append(arc2)
 
     
 
@@ -421,6 +442,8 @@ def classifyNodes(current_ast,node, net: PetriNet):
             compoundIfstmt(current_ast,node,net)
         elif c == STRING_LITERAL:
             stringLiteral(node,net)
+        elif c==  RETURN_STMT :
+            returnStmt(node,net)
         #lo que s epuede hacer en el compund es crear el enlace
         #o transicion 
 
