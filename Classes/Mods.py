@@ -19,10 +19,11 @@ STRING_LITERAL = "StringLiteral"
 UNARY_OP = "UnaryOperator"
 UNARY_OPEXPR = "UnaryExprOrTypeTraitExpr"
 RETURN_STMT = "ReturnStmt"
+CHARACTER_LITERAL = "CharacterLiteral"
 
 '''List for checked nodes and last ouput place for connect figures'''
 CHECKED_NODES = {}
-LAST_OUTPUT_ID = 1 
+LAST_OUTPUT_ID = 0 
 LAST_PARENT_ID = 0
 
 
@@ -35,21 +36,25 @@ def searchNodeById(id, net:PetriNet):
     return None
 
 def functionDecl(ast,node,net: PetriNet):
-    principal = Place("input_main", "0")
-    principal.setInitialMarking(1)
-    net.nodes.append(principal)
-
-
+    global LAST_OUTPUT_ID
+    if ast[node["parent"]]["kind"] == "TranslationUnitDecl":
+        input = Place("InputFunction", LAST_OUTPUT_ID)
+        input.setInitialMarking(1)
+        net.nodes.append(input)
+    else:
+        input = searchNodeById(LAST_OUTPUT_ID,net)
+        
     tranParm = Transition(node["id"])
     net.nodes.append(tranParm)
 
     arcM = Arc(0)
-    arcM.setSourceNode(principal)
+    arcM.setSourceNode(input)
     arcM.setTargetNode(tranParm)
     net.arcs.append(arcM)
 
-    global LAST_OUTPUT_ID
-    output = Place("OutputMain", LAST_OUTPUT_ID)
+    
+    LAST_OUTPUT_ID = LAST_OUTPUT_ID + 1
+    output = Place("OutputFunction", LAST_OUTPUT_ID)
     net.nodes.append(output)
 
     arcToOutput = Arc(0)
@@ -111,18 +116,44 @@ def declstmt(ast,node, net: PetriNet):
 
 def declExpr(node, net: PetriNet):
     global LAST_PARENT_ID
-    source = searchNodeById(LAST_PARENT_ID,net)
 
-    target = searchNodeById(node["referencedDecl"]["id"],net)  
-    if target == None:
-        #if the referenced variable does not exist yet create it and add to nodes list
-        target = Place(node['referencedDecl']["name"], node['referencedDecl']["id"])
-        net.nodes.append(target)
-    
-    arc = Arc(0)
-    arc.setSourceNode(target)
-    arc.setTargetNode(source)
-    net.arcs.append(arc)
+
+    if node["referencedDecl"]["kind"] == FUNC_DECL:
+        '''EN ESTE CASO VER SI PONER ARCO A DEFINICION DE LA FUNCION'''
+        tDeclRef = Transition(node["id"])
+        net.nodes.append(tDeclRef)
+        
+        global LAST_OUTPUT_ID
+        input = searchNodeById(LAST_OUTPUT_ID,net)
+
+        arc = Arc(0)
+        arc.setSourceNode(input)
+        arc.setTargetNode(tDeclRef)
+        net.arcs.append(arc) 
+
+        LAST_OUTPUT_ID = LAST_OUTPUT_ID +1 
+        output = Place("OutputFuncReference", LAST_OUTPUT_ID)
+        net.nodes.append(output)
+
+        arc2 = Arc(0)
+        arc2.setSourceNode(tDeclRef)
+        arc2.setTargetNode(output)
+        net.arcs.append(arc2)
+
+        LAST_PARENT_ID = node["id"]
+    else:
+        source = searchNodeById(LAST_PARENT_ID,net)
+        target = searchNodeById(node["referencedDecl"]["id"],net)  
+        if target == None:
+            #if the referenced variable does not exist yet create it and add to nodes list
+            target = Place(node['referencedDecl']["name"], node['referencedDecl']["id"])
+            net.nodes.append(target)
+        
+        arc = Arc(0)
+        arc.setSourceNode(target)
+        arc.setTargetNode(source)
+        net.arcs.append(arc)
+
 
 
 def integerLiteral(node,net:PetriNet):
@@ -234,6 +265,9 @@ def unaryOp(node, net: PetriNet):
     link.setTargetNode(output)
 
     net.arcs.append(link)
+
+    global LAST_PARENT_ID
+    LAST_PARENT_ID = node["id"]
 
 def ifStmt(ast, node, net: PetriNet):
 
@@ -394,6 +428,18 @@ def stringLiteral(node, net:PetriNet):
     a.setTargetNode(s)
     net.arcs.append(a)
 
+def characterLiteral(node, net: PetriNet):
+    s = Place(node["kind"] + chr(node["value"]), node["id"])
+    net.nodes.append(s)
+
+    global LAST_PARENT_ID
+    p = searchNodeById(LAST_PARENT_ID,net)
+
+    a = Arc(0)
+    a.setSourceNode(p)
+    a.setTargetNode(s)
+    net.arcs.append(a)
+
 def returnStmt(node, net: PetriNet):
 
     global LAST_OUTPUT_ID, LAST_PARENT_ID
@@ -415,6 +461,10 @@ def returnStmt(node, net: PetriNet):
     arc2.setTargetNode(ouput)
     net.arcs.append(arc2)
 
+    LAST_PARENT_ID = node["id"]
+
+
+
     
 
 
@@ -432,6 +482,8 @@ def classifyNodes(current_ast,node, net: PetriNet):
             declstmt(current_ast, node,net)
         elif c == BINARY_OP:
             binaryOp(current_ast,node, net)
+        elif c == UNARY_OP:
+            unaryOp(node,net)
         elif c == DECL_REFER: 
             declExpr(node ,net)
         elif c == INTEGER_LITERAL: 
@@ -442,8 +494,10 @@ def classifyNodes(current_ast,node, net: PetriNet):
             compoundIfstmt(current_ast,node,net)
         elif c == STRING_LITERAL:
             stringLiteral(node,net)
-        elif c==  RETURN_STMT :
+        elif c ==  RETURN_STMT :
             returnStmt(node,net)
+        elif c == CHARACTER_LITERAL:
+            characterLiteral(node,net)
         #lo que s epuede hacer en el compund es crear el enlace
         #o transicion 
 

@@ -57,7 +57,7 @@ class OutputPNML(OutputFormat):
         target: Node
         source = arc.getsourceNode()
         target= arc.getTargetNode() 
-
+    
         arc1 = ET.SubElement(root,"arc")
         arc1.set("id",str(source.getId()) + " TO " + str(target.getId()))
         arc1.set("source",str(source.getId()) )
