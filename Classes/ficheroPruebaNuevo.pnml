@@ -11,7 +11,7 @@
             <graphics x="-5.0" y="35.0" />
           </name>
         </place>
-        <transition id="0x16d4828">
+        <transition id="0x2494410">
           <graphics>
             <position x="342.0" y="100.0" />
           </graphics>
@@ -29,25 +29,7 @@
             <graphics x="-5.0" y="35.0" />
           </name>
         </place>
-        <place id="0x16d4648">
-          <graphics>
-            <position x="399.0" y="169.0" />
-          </graphics>
-          <name>
-            <value>argc</value>
-            <graphics x="-5.0" y="35.0" />
-          </name>
-        </place>
-        <place id="0x16d4710">
-          <graphics>
-            <position x="434.0" y="204.0" />
-          </graphics>
-          <name>
-            <value>argv</value>
-            <graphics x="-5.0" y="35.0" />
-          </name>
-        </place>
-        <transition id="0x16d49e8">
+        <transition id="0x2494598">
           <graphics>
             <position x="392.0" y="150.0" />
           </graphics>
@@ -56,41 +38,149 @@
             <graphics x="-5.0" y="35.0" />
           </name>
         </transition>
-        <place id="0x16d48f0">
+        <place id="0x2494510">
           <graphics>
-            <position x="434.0" y="204.0" />
+            <position x="364.0" y="169.0" />
           </graphics>
           <name>
-            <value>varId_filename</value>
+            <value>varId_i</value>
             <graphics x="-5.0" y="35.0" />
           </name>
         </place>
         <place id="2">
           <graphics>
-            <position x="504.0" y="239.0" />
+            <position x="434.0" y="239.0" />
           </graphics>
           <name>
             <value>OuputDeclStmt</value>
             <graphics x="-5.0" y="35.0" />
           </name>
         </place>
-        <place id="0x16d4978">
+        <place id="0x2494578">
           <graphics>
-            <position x="539.0" y="274.0" />
+            <position x="504.0" y="309.0" />
           </graphics>
           <name>
-            <value>IntegerLiteral_1</value>
+            <value>IntegerLiteral_0</value>
             <graphics x="-5.0" y="35.0" />
           </name>
         </place>
-        <arc id="0 TO 0x16d4828" source="0" target="0x16d4828" />
-        <arc id="0x16d4828 TO 1" source="0x16d4828" target="1" />
-        <arc id="0x16d4828 TO 0x16d4648" source="0x16d4828" target="0x16d4648" />
-        <arc id="0x16d4828 TO 0x16d4710" source="0x16d4828" target="0x16d4710" />
-        <arc id="1 TO 0x16d49e8" source="1" target="0x16d49e8" />
-        <arc id="0x16d49e8 TO 0x16d48f0" source="0x16d49e8" target="0x16d48f0" />
-        <arc id="0x16d49e8 TO 2" source="0x16d49e8" target="2" />
-        <arc id="0x16d4710 TO 0x16d49e8" source="0x16d4710" target="0x16d49e8" />
-        <arc id="0x16d4978 TO 0x16d49e8" source="0x16d4978" target="0x16d49e8" />
+        <transition id="0x2494678">
+          <graphics>
+            <position x="442.0" y="200.0" />
+          </graphics>
+          <name>
+            <value>T</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="3">
+          <graphics>
+            <position x="504.0" y="309.0" />
+          </graphics>
+          <name>
+            <value>OutputWhile</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </place>
+        <transition id="0x2494608">
+          <graphics>
+            <position x="492.0" y="250.0" />
+          </graphics>
+          <name>
+            <value>T</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="6">
+          <graphics>
+            <position x="504.0" y="309.0" />
+          </graphics>
+          <name>
+            <value>OutputToBO</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </place>
+        <transition id="0x2494608">
+          <graphics>
+            <position x="542.0" y="300.0" />
+          </graphics>
+          <name>
+            <value>T</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="0x24945d0">
+          <graphics>
+            <position x="504.0" y="344.0" />
+          </graphics>
+          <name>
+            <value>IntegerLiteral_10</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </place>
+        <transition id="0x2494648">
+          <graphics>
+            <position x="592.0" y="350.0" />
+          </graphics>
+          <name>
+            <value>T</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="4">
+          <graphics>
+            <position x="574.0" y="379.0" />
+          </graphics>
+          <name>
+            <value>OutputUnaryOperator</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </place>
+        <transition id="0x24946b8">
+          <graphics>
+            <position x="642.0" y="400.0" />
+          </graphics>
+          <name>
+            <value>T</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="5">
+          <graphics>
+            <position x="574.0" y="414.0" />
+          </graphics>
+          <name>
+            <value>OutputRtn</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </place>
+        <place id="0x2494698">
+          <graphics>
+            <position x="574.0" y="414.0" />
+          </graphics>
+          <name>
+            <value>IntegerLiteral_0</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </place>
+        <arc id="0 TO 0x2494410" source="0" target="0x2494410" />
+        <arc id="0x2494410 TO 1" source="0x2494410" target="1" />
+        <arc id="1 TO 0x2494598" source="1" target="0x2494598" />
+        <arc id="0x2494598 TO 0x2494510" source="0x2494598" target="0x2494510" />
+        <arc id="0x2494598 TO 2" source="0x2494598" target="2" />
+        <arc id="0x2494578 TO 0x2494598" source="0x2494578" target="0x2494598" />
+        <arc id="2 TO 0x2494678" source="2" target="0x2494678" />
+        <arc id="0x2494678 TO 3" source="0x2494678" target="3" />
+        <arc id="6 TO 0x2494608" source="6" target="0x2494608" />
+        <arc id="0x2494678 TO 6" source="0x2494678" target="6" />
+        <arc id="0x2494510 TO 0x2494608" source="0x2494510" target="0x2494608" />
+        <arc id="0x24945d0 TO 0x2494608" source="0x24945d0" target="0x2494608" />
+        <arc id="3 TO 0x2494648" source="3" target="0x2494648" />
+        <arc id="0x2494648 TO 4" source="0x2494648" target="4" />
+        <arc id="0x2494510 TO 0x2494648" source="0x2494510" target="0x2494648" />
+        <arc id="4 TO 0x24946b8" source="4" target="0x24946b8" />
+        <arc id="0x24946b8 TO 5" source="0x24946b8" target="5" />
+        <arc id="0x2494698 TO 0x24946b8" source="0x2494698" target="0x24946b8" />
       </net>
     </pnml>

@@ -20,6 +20,7 @@ UNARY_OP = "UnaryOperator"
 UNARY_OPEXPR = "UnaryExprOrTypeTraitExpr"
 RETURN_STMT = "ReturnStmt"
 CHARACTER_LITERAL = "CharacterLiteral"
+WHILE_STMT = "WhileStmt"
 
 '''List for checked nodes and last ouput place for connect figures'''
 CHECKED_NODES = {}
@@ -189,12 +190,12 @@ def integerLiteral(node,net:PetriNet):
 def binaryOp( ast, node, net:PetriNet):
 
     operator = Transition(node["id"])
-
+    global LAST_OUTPUT_ID
     '''in case its parent is an IF we need its own input'''
 
-    if ast[node["parent"]]["kind"]== CONTROL_TYPES:
+    if ast[node["parent"]]["kind"]== CONTROL_TYPES or WHILE_STMT:
         '''cambiar id, este de momento para probar'''
-        input = Place("OutputToBO", 99)
+        input = Place("OutputToBO", 3 + LAST_OUTPUT_ID)
         arc = Arc(0)
         arc.setSourceNode(input)
         arc.setTargetNode(operator)
@@ -218,8 +219,9 @@ def binaryOp( ast, node, net:PetriNet):
         '''NO ESTA CONECTADO EL ARCO AL MAIN PRINCIPAL'''
 
         net.arcs.append(link)
+
     else:
-        global LAST_OUTPUT_ID
+        
         input = searchNodeById(LAST_OUTPUT_ID,net)
         arc = Arc(0)
         arc.setSourceNode(input)
@@ -315,6 +317,30 @@ def ifStmt(ast, node, net: PetriNet):
     l.setSourceNode(t_eval)
     l.setTargetNode(output)
     net.arcs.append(l)
+
+def whileStmt(node, net: PetriNet):
+    stmt = Transition(node["id"])
+    net.nodes.append(stmt)
+    global LAST_OUTPUT_ID, LAST_PARENT_ID
+
+    input = searchNodeById(LAST_OUTPUT_ID,net)
+
+    arc = Arc(0)
+    arc.setSourceNode(input)
+    arc.setTargetNode(stmt)
+    net.arcs.append(arc)
+
+    LAST_OUTPUT_ID = LAST_OUTPUT_ID +1
+    output = Place("OutputWhile",LAST_OUTPUT_ID)
+    net.nodes.append(output)
+    c = Arc(0)
+    c.setSourceNode(stmt)
+    c.setTargetNode(output)
+    net.arcs.append(c)
+
+    LAST_PARENT_ID =  node["id"]
+
+
 
 def compoundIfstmt(ast, node,net:PetriNet):
     global LAST_OUTPUT_ID
@@ -498,6 +524,8 @@ def classifyNodes(current_ast,node, net: PetriNet):
             returnStmt(node,net)
         elif c == CHARACTER_LITERAL:
             characterLiteral(node,net)
+        elif c == WHILE_STMT:
+            whileStmt(node,net)
         #lo que s epuede hacer en el compund es crear el enlace
         #o transicion 
 
