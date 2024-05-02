@@ -143,6 +143,7 @@ def declExpr(node, net: PetriNet):
 
         LAST_PARENT_ID = node["id"]
     else:
+        print("entro en declexpre")
         source = searchNodeById(LAST_PARENT_ID,net)
         target = searchNodeById(node["referencedDecl"]["id"],net)  
         if target == None:
@@ -188,12 +189,13 @@ def integerLiteral(node,net:PetriNet):
         net.arcs.append(arcFinal)
 
 def binaryOp( ast, node, net:PetriNet):
+    print("entro en primera parte ob")
 
     operator = Transition(node["id"])
     global LAST_OUTPUT_ID
     '''in case its parent is an IF we need its own input'''
-
-    if ast[node["parent"]]["kind"]== CONTROL_TYPES or WHILE_STMT:
+    if ast[node["parent"]]["kind"]== CONTROL_TYPES or  ast[node["parent"]]["kind"]== WHILE_STMT:
+        print("en situacin de que padre sea if o while")
         '''cambiar id, este de momento para probar'''
         input = Place("OutputToBO", 3 + LAST_OUTPUT_ID)
         arc = Arc(0)
@@ -211,6 +213,7 @@ def binaryOp( ast, node, net:PetriNet):
         arc.setTargetNode(input)
         net.arcs.append(arc)
     elif ast[node["parent"]]["kind"]== DECL_TYPES:
+        print("entro en ob zona de declstmt")
         '''in case its parent is a declaration'''
         dcl = searchNodeById(node["parent"],net)
         link = Arc(0)
@@ -227,9 +230,8 @@ def binaryOp( ast, node, net:PetriNet):
         arc.setSourceNode(input)
         arc.setTargetNode(operator)
 
-        net.nodes.append(operator)
-        net.arcs.append(arc)
 
+        net.arcs.append(arc)
         LAST_OUTPUT_ID = LAST_OUTPUT_ID + 1 
         output = Place("Output" + node["kind"], LAST_OUTPUT_ID)
         net.nodes.append(output)
@@ -244,22 +246,31 @@ def binaryOp( ast, node, net:PetriNet):
     LAST_PARENT_ID = node["id"]
     net.nodes.append(operator)
     
-def unaryOp(node, net: PetriNet):
+def unaryOp(ast, node, net: PetriNet):
+    ab= ast[node["parent"]]["parent"]
+   
     tranOp = Transition(node["id"])
 
     net.nodes.append(tranOp)
 
     global LAST_OUTPUT_ID
-    input = searchNodeById(LAST_OUTPUT_ID, net)
 
+   
+    if ast[ab]["kind"] == WHILE_STMT:
+        id =  CHECKED_NODES[ab]["finalOutput"] 
+        input = searchNodeById(id, net)
+        output = Place("Output" + node["kind"], LAST_OUTPUT_ID + 23)
+    else:
+        input = searchNodeById(LAST_OUTPUT_ID, net)
+        LAST_OUTPUT_ID = LAST_OUTPUT_ID + 1
+        output = Place("Output" + node["kind"], LAST_OUTPUT_ID)
+    
     arc = Arc(0)
     arc.setSourceNode(input)
     arc.setTargetNode(tranOp)
 
     net.arcs.append(arc)
-
-    LAST_OUTPUT_ID = LAST_OUTPUT_ID + 1
-    output = Place("Output" + node["kind"], LAST_OUTPUT_ID)
+    
     net.nodes.append(output)
 
     link = Arc(0)
@@ -331,12 +342,32 @@ def whileStmt(node, net: PetriNet):
     net.arcs.append(arc)
 
     LAST_OUTPUT_ID = LAST_OUTPUT_ID +1
-    output = Place("OutputWhile",LAST_OUTPUT_ID)
+    output = Place("OutputMidWhile",LAST_OUTPUT_ID)
     net.nodes.append(output)
+    CHECKED_NODES[node["id"]]["OutputIf"] = LAST_OUTPUT_ID
+
+
     c = Arc(0)
     c.setSourceNode(stmt)
     c.setTargetNode(output)
     net.arcs.append(c)
+
+    t_end_while = Transition(LAST_OUTPUT_ID + 23)
+    net.nodes.append(t_end_while)
+
+    b = Arc(0)
+    b.setSourceNode(output)
+    b.setTargetNode(t_end_while)
+    net.arcs.append(b)
+
+    LAST_OUTPUT_ID = LAST_OUTPUT_ID + 1 
+    output2 = Place("finalOutputWhile", LAST_OUTPUT_ID)
+    net.nodes.append(output2)
+
+    a = Arc(0)
+    a.setSourceNode(t_end_while)
+    a.setTargetNode(output2)
+    net.arcs.append(a)
 
     LAST_PARENT_ID =  node["id"]
 
@@ -439,6 +470,50 @@ def compoundIfstmt(ast, node,net:PetriNet):
         actToOutput.setSourceNode(actionBlock)
         actToOutput.setTargetNode(output)
         net.arcs.append(actToOutput)
+    elif ast[node["parent"]]["kind"] == WHILE_STMT:
+        oPar = CHECKED_NODES[node["parent"]]["OutputIf"]
+        input = searchNodeById(oPar,net)
+
+        t_while = Transition("t_while" + str(LAST_OUTPUT_ID))
+        net.nodes.append(t_while)
+
+        arc = Arc(0)
+        arc.setSourceNode(input)
+        arc.setTargetNode(t_while)
+        net.arcs.append(arc)
+
+        outputFinal = Place("OutputWhile_Action", LAST_OUTPUT_ID + 55)
+        net.nodes.append(outputFinal)
+
+        arcAB = Arc(0)
+        arcAB.setSourceNode(t_while)
+        arcAB.setTargetNode(outputFinal)
+        net.arcs.append(arcAB)
+
+        actionBlock = Transition(node["id"])
+        net.nodes.append(actionBlock)
+
+        arc2 = Arc(0)
+        arc2.setSourceNode(outputFinal)
+        arc2.setTargetNode(actionBlock)
+        net.arcs.append(arc2) 
+
+        auxID = LAST_OUTPUT_ID + 23
+        midOut = Place("midOutwhile", auxID)
+        net.nodes.append(midOut)
+
+        arc3 = Arc(0)
+        arc3.setSourceNode(actionBlock)
+        arc3.setTargetNode(midOut)
+        net.arcs.append(arc3)
+
+
+        CHECKED_NODES[node["parent"]]["finalOutput"] = auxID
+
+        LAST_PARENT_ID = node["id"]
+
+        
+
        
 
 
@@ -509,7 +584,7 @@ def classifyNodes(current_ast,node, net: PetriNet):
         elif c == BINARY_OP:
             binaryOp(current_ast,node, net)
         elif c == UNARY_OP:
-            unaryOp(node,net)
+            unaryOp(current_ast,node,net)
         elif c == DECL_REFER: 
             declExpr(node ,net)
         elif c == INTEGER_LITERAL: 
