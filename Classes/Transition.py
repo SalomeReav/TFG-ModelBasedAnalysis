@@ -19,7 +19,7 @@ class Transition(Node):
         return self.targetArcs
 
     def setSourceArc(self, source):
-        self.targetArcs.append(source)
+        self.sourceArcs.append(source)
     
    
     def setTargetArc(self, target):
