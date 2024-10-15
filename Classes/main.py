@@ -1,8 +1,10 @@
 import xml.etree.ElementTree as ET
 import json
+import sys
 from PetriNet import PetriNet 
 import Mods
-import sys
+from Variables import Variables
+
 
 
 if __name__== "__main__":
@@ -17,6 +19,7 @@ if __name__== "__main__":
     #comprobar por nodo 
     for source_file in myjson:
         current_ast =myjson[source_file]
+        Variables.ID_GEN = Mods.generate_id_conec()
         for id in current_ast:
             Mods.classify_nodes(current_ast,current_ast[id], net)
 
