@@ -1,0 +1,354 @@
+{
+    "c_src/struct.c": {
+        "0xc2d6d8": {
+            "parent": null,
+            "id": "0xc2d6d8",
+            "kind": "TranslationUnitDecl",
+            "range": {},
+            "inner": [
+                "0xc84300",
+                "0xc845b8",
+                "0xc846d0"
+            ]
+        },
+        "0xc84300": {
+            "parent": "0xc2d6d8",
+            "id": "0xc84300",
+            "kind": "RecordDecl",
+            "loc": {
+                "offset": 7,
+                "file": "c_src/struct.c",
+                "line": 1,
+                "col": 8,
+                "tokLen": 6
+            },
+            "range": {
+                "begin": {
+                    "offset": 0,
+                    "col": 1,
+                    "tokLen": 6
+                },
+                "end": {
+                    "offset": 62,
+                    "line": 5,
+                    "col": 1,
+                    "tokLen": 1
+                }
+            },
+            "name": "Person",
+            "tagUsed": "struct",
+            "completeDefinition": true,
+            "inner": [
+                "0xc84438",
+                "0xc844a0",
+                "0xc84508"
+            ]
+        },
+        "0xc84438": {
+            "parent": "0xc84300",
+            "id": "0xc84438",
+            "kind": "FieldDecl",
+            "loc": {
+                "offset": 23,
+                "line": 2,
+                "col": 8,
+                "tokLen": 4
+            },
+            "range": {
+                "begin": {
+                    "offset": 18,
+                    "col": 3,
+                    "tokLen": 4
+                },
+                "end": {
+                    "offset": 30,
+                    "col": 15,
+                    "tokLen": 1
+                }
+            },
+            "name": "name",
+            "type": {
+                "qualType": "char[50]"
+            }
+        },
+        "0xc844a0": {
+            "parent": "0xc84300",
+            "id": "0xc844a0",
+            "kind": "FieldDecl",
+            "loc": {
+                "offset": 39,
+                "line": 3,
+                "col": 7,
+                "tokLen": 5
+            },
+            "range": {
+                "begin": {
+                    "offset": 35,
+                    "col": 3,
+                    "tokLen": 3
+                },
+                "end": {
+                    "offset": 39,
+                    "col": 7,
+                    "tokLen": 5
+                }
+            },
+            "name": "citNo",
+            "type": {
+                "qualType": "int"
+            }
+        },
+        "0xc84508": {
+            "parent": "0xc84300",
+            "id": "0xc84508",
+            "kind": "FieldDecl",
+            "loc": {
+                "offset": 54,
+                "line": 4,
+                "col": 9,
+                "tokLen": 6
+            },
+            "range": {
+                "begin": {
+                    "offset": 48,
+                    "col": 3,
+                    "tokLen": 5
+                },
+                "end": {
+                    "offset": 54,
+                    "col": 9,
+                    "tokLen": 6
+                }
+            },
+            "name": "salary",
+            "type": {
+                "qualType": "float"
+            }
+        },
+        "0xc845b8": {
+            "parent": "0xc2d6d8",
+            "id": "0xc845b8",
+            "kind": "VarDecl",
+            "loc": {
+                "offset": 63,
+                "line": 5,
+                "col": 2,
+                "tokLen": 14
+            },
+            "range": {
+                "begin": {
+                    "offset": 0,
+                    "line": 1,
+                    "col": 1,
+                    "tokLen": 6
+                },
+                "end": {
+                    "offset": 63,
+                    "line": 5,
+                    "col": 2,
+                    "tokLen": 14
+                }
+            },
+            "name": "person_insider",
+            "mangledName": "person_insider",
+            "type": {
+                "desugaredQualType": "struct Person",
+                "qualType": "struct Person"
+            }
+        },
+        "0xc846d0": {
+            "parent": "0xc2d6d8",
+            "id": "0xc846d0",
+            "kind": "FunctionDecl",
+            "loc": {
+                "offset": 84,
+                "line": 7,
+                "col": 5,
+                "tokLen": 4
+            },
+            "range": {
+                "begin": {
+                    "offset": 80,
+                    "col": 1,
+                    "tokLen": 3
+                },
+                "end": {
+                    "offset": 156,
+                    "line": 11,
+                    "col": 1,
+                    "tokLen": 1
+                }
+            },
+            "name": "main",
+            "mangledName": "main",
+            "type": {
+                "qualType": "int ()"
+            },
+            "inner": [
+                "0xc84a48"
+            ]
+        },
+        "0xc84a48": {
+            "parent": "0xc846d0",
+            "id": "0xc84a48",
+            "kind": "CompoundStmt",
+            "range": {
+                "begin": {
+                    "offset": 90,
+                    "line": 7,
+                    "col": 11,
+                    "tokLen": 1
+                },
+                "end": {
+                    "offset": 156,
+                    "line": 11,
+                    "col": 1,
+                    "tokLen": 1
+                }
+            },
+            "inner": [
+                "0xc84828",
+                "0xc84a00",
+                "0xc84a38"
+            ]
+        },
+        "0xc84828": {
+            "parent": "0xc84a48",
+            "id": "0xc84828",
+            "kind": "DeclStmt",
+            "range": {
+                "begin": {
+                    "offset": 93,
+                    "line": 8,
+                    "col": 2,
+                    "tokLen": 6
+                },
+                "end": {
+                    "offset": 115,
+                    "col": 24,
+                    "tokLen": 1
+                }
+            },
+            "inner": [
+                "0xc847c0"
+            ]
+        },
+        "0xc847c0": {
+            "parent": "0xc84828",
+            "id": "0xc847c0",
+            "kind": "VarDecl",
+            "loc": {
+                "offset": 107,
+                "col": 16,
+                "tokLen": 8
+            },
+            "range": {
+                "begin": {
+                    "offset": 93,
+                    "col": 2,
+                    "tokLen": 6
+                },
+                "end": {
+                    "offset": 107,
+                    "col": 16,
+                    "tokLen": 8
+                }
+            },
+            "name": "person_0",
+            "type": {
+                "desugaredQualType": "struct Person",
+                "qualType": "struct Person"
+            }
+        },
+        "0xc84a00": {
+            "parent": "0xc84a48",
+            "id": "0xc84a00",
+            "kind": "DeclStmt",
+            "range": {
+                "begin": {
+                    "offset": 118,
+                    "line": 9,
+                    "col": 2,
+                    "tokLen": 6
+                },
+                "end": {
+                    "offset": 143,
+                    "col": 27,
+                    "tokLen": 1
+                }
+            },
+            "inner": [
+                "0xc84998"
+            ]
+        },
+        "0xc84998": {
+            "parent": "0xc84a00",
+            "id": "0xc84998",
+            "kind": "VarDecl",
+            "loc": {
+                "offset": 132,
+                "col": 16,
+                "tokLen": 7
+            },
+            "range": {
+                "begin": {
+                    "offset": 118,
+                    "col": 2,
+                    "tokLen": 6
+                },
+                "end": {
+                    "offset": 142,
+                    "col": 26,
+                    "tokLen": 1
+                }
+            },
+            "name": "persons",
+            "type": {
+                "qualType": "struct Person[20]"
+            }
+        },
+        "0xc84a38": {
+            "parent": "0xc84a48",
+            "id": "0xc84a38",
+            "kind": "ReturnStmt",
+            "range": {
+                "begin": {
+                    "offset": 146,
+                    "line": 10,
+                    "col": 2,
+                    "tokLen": 6
+                },
+                "end": {
+                    "offset": 153,
+                    "col": 9,
+                    "tokLen": 1
+                }
+            },
+            "inner": [
+                "0xc84a18"
+            ]
+        },
+        "0xc84a18": {
+            "parent": "0xc84a38",
+            "id": "0xc84a18",
+            "kind": "IntegerLiteral",
+            "range": {
+                "begin": {
+                    "offset": 153,
+                    "col": 9,
+                    "tokLen": 1
+                },
+                "end": {
+                    "offset": 153,
+                    "col": 9,
+                    "tokLen": 1
+                }
+            },
+            "type": {
+                "qualType": "int"
+            },
+            "valueCategory": "prvalue",
+            "value": "0"
+        }
+    }
+}
