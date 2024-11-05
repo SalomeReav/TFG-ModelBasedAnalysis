@@ -22,7 +22,7 @@
         </transition>
         <place id="1">
           <graphics>
-            <position x="364.0" y="169.0" />
+            <position x="364.0" y="134.0" />
           </graphics>
           <name>
             <value>OutputInter</value>
@@ -31,7 +31,7 @@
         </place>
         <place id="0x16d4648">
           <graphics>
-            <position x="364.0" y="239.0" />
+            <position x="434.0" y="204.0" />
           </graphics>
           <name>
             <value>argc</value>
@@ -40,7 +40,7 @@
         </place>
         <place id="0x16d4710">
           <graphics>
-            <position x="364.0" y="239.0" />
+            <position x="469.0" y="274.0" />
           </graphics>
           <name>
             <value>argv</value>
@@ -58,7 +58,7 @@
         </transition>
         <place id="3">
           <graphics>
-            <position x="434.0" y="309.0" />
+            <position x="469.0" y="344.0" />
           </graphics>
           <name>
             <value>out_con</value>
@@ -76,7 +76,7 @@
         </transition>
         <place id="4">
           <graphics>
-            <position x="469.0" y="344.0" />
+            <position x="504.0" y="379.0" />
           </graphics>
           <name>
             <value>OutputDeclStmt</value>
@@ -85,7 +85,7 @@
         </place>
         <place id="0x16d48f0">
           <graphics>
-            <position x="504.0" y="414.0" />
+            <position x="574.0" y="379.0" />
           </graphics>
           <name>
             <value>varId_filename</value>
@@ -94,7 +94,7 @@
         </place>
         <place id="0x16d4978">
           <graphics>
-            <position x="539.0" y="414.0" />
+            <position x="644.0" y="414.0" />
           </graphics>
           <name>
             <value>IntegerLiteral_1</value>

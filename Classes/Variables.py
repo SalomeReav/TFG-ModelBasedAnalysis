@@ -14,14 +14,15 @@ class Variables:
 
     '''node type variables'''
     FUNC_DECL = "FunctionDecl"
+    RECORD_DECL = "RecordDecl"
     DECL_TYPES = "VarDecl"
     IF_STMT = "IfStmt"
-    CALL_TYPES = "CallExpr"
     BINARY_OP = "BinaryOperator"
     COMPOUND_STMT = "CompoundStmt"
     DECL_STMT = "DeclStmt"
     DECL_REFER = "DeclRefExpr"
     PARMVAR_DECL = "ParmVarDecl"
+    FIELD_DECL = "FieldDecl"
     INTEGER_LITERAL = "IntegerLiteral"
     STRING_LITERAL = "StringLiteral"
     UNARY_OP = "UnaryOperator"
@@ -31,6 +32,9 @@ class Variables:
     WHILE_STMT = "WhileStmt"
     PAREN_EXPR = "ParenExpr"
     DO_WHILE = "DoStmt"
+    FOR_STMT = "ForStmt"
+    FUNC_STRUCTS = {FUNC_DECL,RECORD_DECL}
+    VAR_FUNC = {PARMVAR_DECL,FIELD_DECL}
     LITERALS = {INTEGER_LITERAL,STRING_LITERAL,CHARACTER_LITERAL}
     OPERATORS = {BINARY_OP,UNARY_OP,UNARY_OPEXPR}
     CONTROL_TYPES = {IF_STMT,WHILE_STMT}

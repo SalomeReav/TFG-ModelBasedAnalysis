@@ -40,7 +40,6 @@ class PetriNet:
         et.write(out, encoding= 'UTF-8', xml_declaration= False)
         out.close()
 
-        #et.write("ficheroPrueba.xml", xml_declaration=True, encoding= "UTF-8")
     
 
 
