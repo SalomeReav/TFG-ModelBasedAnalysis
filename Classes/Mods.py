@@ -222,6 +222,7 @@ def decl_expr(ast,node, net: PetriNet):
     '''
     Process the Referenced nodes to functions or variables
     '''
+    final_conect(ast,node,net)
     node_referenced = search_node_by_id(node["referencedDecl"]["id"],net)
     if node["referencedDecl"]["kind"] == Variables.FUNC_DECL:
        # in case the node is not created in the red(f.e printf)
@@ -239,10 +240,12 @@ def decl_expr(ast,node, net: PetriNet):
             node_referenced2 = search_node_by_id(node["referencedDecl"]["id"],net)
             create_arc(out_aux,node_referenced2,net,0)
 
-        if ast[Variables.LAST_PARENT.getId()]["kind"] not in Variables.CONTROL_TYPES:
+        if node["parent"] in {Variables.MAIN_COMPOUND,Variables.CURRENT_COMPOUND} :
+            create_sec_tran(net)
+        #if ast[Variables.LAST_PARENT.getId()]["kind"] not in Variables.CONTROL_TYPES:
             # in all the cases out of a control type the reference is a secuencial instruction
             # inside a condition of a control type the reference is a inside instruction 
-            create_sec_tran(net)   
+        #    create_sec_tran(net)   
 
         create_arc(Variables.CURRENT_OUTPUT,node_referenced,net,0)
         mid_aux = Place("out_mid_x", next(Variables.ID_GEN))
@@ -283,10 +286,11 @@ def decl_expr(ast,node, net: PetriNet):
     if Variables.CHECKED_NODES[Variables.ID_MAIN_PARENT]["referenced_node"] == None:
         Variables.CHECKED_NODES[Variables.ID_MAIN_PARENT]["referenced_node"] = node["referencedDecl"]["id"]
 
-def literals(node,net:PetriNet):
+def literals(ast,node,net:PetriNet):
     '''
     Process nodes of integers, strings and characters
     '''
+    final_conect(ast,node,net)
     literal = Place(node["kind"] + "_" + str(node["value"]),node["id"])
     net.nodes.append(literal)
     create_arc(Variables.LAST_PARENT,literal,net,0)
@@ -359,6 +363,7 @@ def for_loop(ast,node,net:PetriNet):
     '''
     Reset the current output for the output node of the previous For stmt
     '''
+    final_conect(ast,node,net)
     # reset current compound for compound of for 
     Variables.CURRENT_COMPOUND = Variables.MAIN_COMPOUND
     if ast[Variables.ID_MAIN_PARENT]["kind"] == Variables.FOR_STMT:
@@ -568,11 +573,13 @@ def classify_nodes(current_ast,node, net: PetriNet):
         elif c == Variables.DECL_REFER: 
             decl_expr(current_ast,node ,net)
         elif c in Variables.LITERALS: 
-           literals(node, net)
+           literals(current_ast,node, net)
         elif c == Variables.COMPOUND_STMT:
             compound_control(current_ast,node,net)
         elif c ==  Variables.RETURN_STMT :
             return_stmt(current_ast,node,net)
         elif c == Variables.FOR_STMT:
             for_loop(current_ast,node,net)
+        elif c in Variables.CONTROL_TYPES:
+            Variables.ID_MAIN_PARENT = node["id"]
 
