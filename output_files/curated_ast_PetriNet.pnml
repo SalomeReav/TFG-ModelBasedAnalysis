@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" standalone = "yes"?>
+<pnml>
+      <net>
+        <token id="Default" red="0" green="0" blue="0" />
+        <place id="0">
+          <graphics>
+            <position x="329.0" y="134.0" />
+          </graphics>
+          <name>
+            <value>input_placeFunction</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value>1</value>
+          </initialMarking>
+        </place>
+        <transition id="0x74e828">
+          <graphics>
+            <position x="342.0" y="100.0" />
+          </graphics>
+          <name>
+            <value>0x74e828</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="1">
+          <graphics>
+            <position x="399.0" y="204.0" />
+          </graphics>
+          <name>
+            <value>OutputInter</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value />
+          </initialMarking>
+        </place>
+        <place id="0x74e648">
+          <graphics>
+            <position x="434.0" y="274.0" />
+          </graphics>
+          <name>
+            <value>argc</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value>1</value>
+          </initialMarking>
+        </place>
+        <place id="0x74e710">
+          <graphics>
+            <position x="434.0" y="309.0" />
+          </graphics>
+          <name>
+            <value>argv</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value>1</value>
+          </initialMarking>
+        </place>
+        <transition id="t_sec_black2">
+          <graphics>
+            <position x="392.0" y="150.0" />
+          </graphics>
+          <name>
+            <value>t_sec_black2</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="3">
+          <graphics>
+            <position x="504.0" y="344.0" />
+          </graphics>
+          <name>
+            <value>out_con</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value />
+          </initialMarking>
+        </place>
+        <transition id="0x74e958">
+          <graphics>
+            <position x="442.0" y="200.0" />
+          </graphics>
+          <name>
+            <value>0x74e958</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="4">
+          <graphics>
+            <position x="574.0" y="344.0" />
+          </graphics>
+          <name>
+            <value>OutputDeclStmt</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value />
+          </initialMarking>
+        </place>
+        <place id="0x74e8f0">
+          <graphics>
+            <position x="644.0" y="414.0" />
+          </graphics>
+          <name>
+            <value>varId_filename</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value>1</value>
+          </initialMarking>
+        </place>
+        <arc id="0 TO 0x74e828" source="0" target="0x74e828">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x74e828 TO 1" source="0x74e828" target="1">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x74e828 TO 0x74e648" source="0x74e828" target="0x74e648">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x74e648 TO 0x74e828" source="0x74e648" target="0x74e828">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x74e828 TO 0x74e710" source="0x74e828" target="0x74e710">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x74e710 TO 0x74e828" source="0x74e710" target="0x74e828">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="1 TO t_sec_black2" source="1" target="t_sec_black2">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="t_sec_black2 TO 3" source="t_sec_black2" target="3">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="3 TO 0x74e958" source="3" target="0x74e958">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x74e958 TO 4" source="0x74e958" target="4">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x74e958 TO 0x74e8f0" source="0x74e958" target="0x74e8f0">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+      </net>
+    </pnml>

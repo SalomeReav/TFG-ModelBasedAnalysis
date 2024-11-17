@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone = "yes"?>
+<pnml>
+      <net>
+        <token id="Default" red="0" green="0" blue="0" />
+        <place id="0">
+          <graphics>
+            <position x="329.0" y="134.0" />
+          </graphics>
+          <name>
+            <value>input_placeFunction</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value>1</value>
+          </initialMarking>
+        </place>
+        <transition id="0x13aa470">
+          <graphics>
+            <position x="342.0" y="100.0" />
+          </graphics>
+          <name>
+            <value>0x13aa470</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="1">
+          <graphics>
+            <position x="329.0" y="134.0" />
+          </graphics>
+          <name>
+            <value>OutputInter</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value />
+          </initialMarking>
+        </place>
+        <transition id="0x138ef18">
+          <graphics>
+            <position x="392.0" y="150.0" />
+          </graphics>
+          <name>
+            <value>0x138ef18</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="2">
+          <graphics>
+            <position x="364.0" y="134.0" />
+          </graphics>
+          <name>
+            <value>out_mid_x</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value />
+          </initialMarking>
+        </place>
+        <place id="0x13aa568">
+          <graphics>
+            <position x="364.0" y="204.0" />
+          </graphics>
+          <name>
+            <value>StringLiteral_"### THIS IS OUR MAIN ###"</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value>1</value>
+          </initialMarking>
+        </place>
+        <arc id="0 TO 0x13aa470" source="0" target="0x13aa470">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x13aa470 TO 1" source="0x13aa470" target="1">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="1 TO 0x138ef18" source="1" target="0x138ef18">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x138ef18 TO 2" source="0x138ef18" target="2">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x138ef18 TO 0x13aa568" source="0x138ef18" target="0x13aa568">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x13aa568 TO 0x138ef18" source="0x13aa568" target="0x138ef18">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+      </net>
+    </pnml>

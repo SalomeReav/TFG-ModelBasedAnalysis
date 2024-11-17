@@ -1,4 +1,4 @@
-#script de lanzamiento de ficheros de prueba 
+#script tha launchs the tool with every test file in the inputs folder
 import os 
 import subprocess
 

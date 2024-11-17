@@ -30,7 +30,7 @@ def search_node_by_id(id:int, net:PetriNet):
                 return n 
     return None
 
-def create_arc(first_node:Node,second_node:Node,net: PetriNet,num:int):
+def create_arc(first_node:Node,second_node:Node,net: PetriNet):
     '''
     Create an Arc object,connect the parameters node and append all to the net 
     Args:
@@ -49,7 +49,7 @@ def create_arc(first_node:Node,second_node:Node,net: PetriNet,num:int):
         print(e)
       
 
-    arc = Arc(num)
+    arc = Arc(1)
     arc.setSourceNode(first_node)
     arc.setTargetNode(second_node)
     net.arcs.append(arc)
@@ -63,12 +63,12 @@ def create_sec_tran(net: PetriNet):
 
     nex_out = Place("out_con",next(Variables.ID_GEN))
     net.nodes.append(nex_out)
-    create_arc(Variables.CURRENT_OUTPUT,tran_black,net,0)
-    create_arc(tran_black,nex_out,net,0)
+    create_arc(Variables.CURRENT_OUTPUT,tran_black,net)
+    create_arc(tran_black,nex_out,net)
 
     Variables.CURRENT_OUTPUT = nex_out
 
-def verify_object(eval_node:Node,first_node:Node,net:PetriNet,num:int):
+def verify_object(eval_node:Node,first_node:Node,net:PetriNet):
     '''
     Check the type of an object and create its determinate arcs and places.
     For control type structures where transitions of decision need to be link 
@@ -90,15 +90,16 @@ def verify_object(eval_node:Node,first_node:Node,net:PetriNet,num:int):
 
     if isinstance(eval_node, Transition):
         out_ax_t = Place("out_mid_ref", next(Variables.ID_GEN))
+        out_ax_t.setInitialMarking(1)
         net.nodes.append(out_ax_t)
         # its a bidirectional arc
-        create_arc(first_node,out_ax_t,net,num)
-        create_arc(out_ax_t,eval_node,net,num)
-        create_arc(out_ax_t,first_node,net,num)
-        create_arc(eval_node,out_ax_t,net,num)
+        create_arc(first_node,out_ax_t,net)
+        create_arc(out_ax_t,eval_node,net)
+        create_arc(out_ax_t,first_node,net)
+        create_arc(eval_node,out_ax_t,net)
     else:
-        create_arc(first_node,eval_node,net,num)
-        create_arc(eval_node,first_node,net,num)
+        create_arc(first_node,eval_node,net)
+        create_arc(eval_node,first_node,net)
 
 def final_conect(ast,node, net:PetriNet):
     '''
@@ -108,15 +109,17 @@ def final_conect(ast,node, net:PetriNet):
         end_node = search_node_by_id(Variables.CHECKED_NODES[Variables.ID_MAIN_PARENT]["output_node"],net)
         repeat_node = search_node_by_id(Variables.CHECKED_NODES[Variables.ID_MAIN_PARENT]["input_node"],net) 
 
+        
         main_parent_kind = ast[Variables.ID_MAIN_PARENT]["kind"]
         if main_parent_kind == Variables.WHILE_STMT or main_parent_kind == Variables.FOR_STMT:
             # connect to the repeat node to mark the loop
-            create_arc(Variables.LAST_PARENT, repeat_node,net,0)
+            create_arc(Variables.LAST_PARENT, repeat_node,net)
             Variables.CURRENT_OUTPUT = end_node
         elif main_parent_kind == Variables.IF_STMT and len(ast[Variables.ID_MAIN_PARENT]["inner"]) > 2:
             if Variables.CURRENT_COMPOUND == ast[Variables.ID_MAIN_PARENT]["inner"][2]:
+                print("dentro de cierre de false")
                 # Close the false branch of an if with the end node created in the true branch before
-                create_arc(Variables.LAST_PARENT, end_node,net,0)
+                create_arc(Variables.LAST_PARENT, end_node,net)
                 Variables.CURRENT_OUTPUT = end_node
         elif main_parent_kind == Variables.DO_WHILE:
             # Create a transition for the end of the do-while loop
@@ -124,25 +127,25 @@ def final_conect(ast,node, net:PetriNet):
             net.nodes.append(t_end_do)
 
             ref_node = search_node_by_id(Variables.CHECKED_NODES[Variables.ID_MAIN_PARENT]["referenced_node"],net)
-            create_arc(Variables.CURRENT_OUTPUT,t_end_do,net,0)
-            create_arc(t_end_do,ref_node,net,0)
+            create_arc(Variables.CURRENT_OUTPUT,t_end_do,net)
+            create_arc(t_end_do,ref_node,net)
 
             # Create a transition for the start of the do-while loop
             t_do = Transition("t_do" + str(next(Variables.ID_GEN)))
             net.nodes.append(t_do)
-            create_arc(Variables.CURRENT_OUTPUT,t_do,net,0)
-            create_arc(t_do,ref_node,net,1)
+            create_arc(Variables.CURRENT_OUTPUT,t_do,net)
+            create_arc(t_do,ref_node,net)
 
             # Link default transitions to the evaluation node referenced
-            verify_object(ref_node,t_end_do,net,0)
-            verify_object(ref_node,t_do,net,1)
+            verify_object(ref_node,t_end_do,net)
+            verify_object(ref_node,t_do,net)
 
             input_node = search_node_by_id(Variables.CHECKED_NODES[Variables.ID_MAIN_PARENT]["input_node"],net)
-            create_arc(t_do,input_node,net,0)
+            create_arc(t_do,input_node,net)
 
             output_do = Place("output_do",next(Variables.ID_GEN))
             net.nodes.append(output_do)
-            create_arc(t_end_do,output_do,net,0)
+            create_arc(t_end_do,output_do,net)
             Variables.CURRENT_OUTPUT = output_do    
 
 def func_struct_decl(ast,node,net: PetriNet):
@@ -164,10 +167,10 @@ def func_struct_decl(ast,node,net: PetriNet):
     # create elements and append them to the net    
     transition_func = Transition(node["id"])
     net.nodes.append(transition_func)
-    create_arc(input_place,transition_func,net,0)
+    create_arc(input_place,transition_func,net)
     output = Place("OutputInter", next(Variables.ID_GEN))
     net.nodes.append(output)
-    create_arc(transition_func,output,net,0)
+    create_arc(transition_func,output,net)
 
     # save information for the current structure 
     Variables.CHECKED_NODES[node["id"]]["output_node"] = output.getId() 
@@ -180,9 +183,10 @@ def parm_field_decl(ast,node,net:PetriNet):
     Process of function paremeters and fields of struct/union/class
     '''
     parameter = Place(node["name"],node["id"])
+    parameter.setInitialMarking(1)
     net.nodes.append(parameter)
-    create_arc(Variables.LAST_PARENT,parameter,net,0)
-    create_arc(parameter,Variables.LAST_PARENT,net,0)
+    create_arc(Variables.LAST_PARENT,parameter,net)
+    create_arc(parameter,Variables.LAST_PARENT,net)
 
 def decl_stmt(ast,node, net: PetriNet):
     '''
@@ -198,13 +202,13 @@ def decl_stmt(ast,node, net: PetriNet):
     net.nodes.append(declare_node)
     input_place_place = Variables.CURRENT_OUTPUT
     Variables.CHECKED_NODES[node["id"]]["input_node"] = input_place_place.getId()
-    create_arc(input_place_place,declare_node,net,0)
+    create_arc(input_place_place,declare_node,net)
 
     # create output node for following structure
     output = Place("Output" + node["kind"], next(Variables.ID_GEN) )
     net.nodes.append(output)
     Variables.CURRENT_OUTPUT = output
-    create_arc(declare_node,output,net,0)
+    create_arc(declare_node,output,net)
     Variables.CHECKED_NODES[node["id"]]["output_node"] = output.getId()
     
     Variables.LAST_PARENT = declare_node
@@ -215,8 +219,9 @@ def var_dcl(node, net: PetriNet):
     Process variables declared in DeclStmt
     ''' 
     variable = Place("varId_" + node["name"],node["id"])
+    variable.setInitialMarking(1)
     net.nodes.append(variable)
-    create_arc(Variables.LAST_PARENT,variable,net,0)
+    create_arc(Variables.LAST_PARENT,variable,net)
 
 def decl_expr(ast,node, net: PetriNet):
     '''
@@ -236,9 +241,9 @@ def decl_expr(ast,node, net: PetriNet):
 
             out_aux = Place("out_refer", next(Variables.ID_GEN))
             net.nodes.append(out_aux)
-            create_arc(node_referenced,out_aux,net,0)
+            create_arc(node_referenced,out_aux,net)
             node_referenced2 = search_node_by_id(node["referencedDecl"]["id"],net)
-            create_arc(out_aux,node_referenced2,net,0)
+            create_arc(out_aux,node_referenced2,net)
 
         if node["parent"] in {Variables.MAIN_COMPOUND,Variables.CURRENT_COMPOUND} :
             create_sec_tran(net)
@@ -247,10 +252,10 @@ def decl_expr(ast,node, net: PetriNet):
             # inside a condition of a control type the reference is a inside instruction 
         #    create_sec_tran(net)   
 
-        create_arc(Variables.CURRENT_OUTPUT,node_referenced,net,0)
+        create_arc(Variables.CURRENT_OUTPUT,node_referenced,net)
         mid_aux = Place("out_mid_x", next(Variables.ID_GEN))
         net.nodes.append(mid_aux)
-        create_arc(node_referenced,mid_aux,net,0)
+        create_arc(node_referenced,mid_aux,net)
 
         Variables.CURRENT_OUTPUT = mid_aux
         Variables.LAST_PARENT = node_referenced    
@@ -262,24 +267,24 @@ def decl_expr(ast,node, net: PetriNet):
         if ast[node["parent"]]["kind"] == Variables.BINARY_OP:
             # this is the case when its the variable where the binary is going to save a value ( a = b)
             par_node = search_node_by_id(node["parent"],net)
-            create_arc(par_node,node_referenced,net,0)
+            create_arc(par_node,node_referenced,net)
         
         elif ast[check]["kind"] not in Variables.OPERATORS and ast[Variables.ID_MAIN_PARENT]["kind"] in Variables.CONTROL_TYPES:
             # Case of control type condition f.e if (a) 
             tran_refer = Transition(node["id"])
             net.nodes.append(tran_refer)
 
-            create_arc(Variables.CURRENT_OUTPUT,tran_refer,net,0)
+            create_arc(Variables.CURRENT_OUTPUT,tran_refer,net)
             mid_out = Place("midIF", next(Variables.ID_GEN))
             net.nodes.append(mid_out)
-            create_arc(tran_refer,mid_out,net,0)
+            create_arc(tran_refer,mid_out,net)
 
             Variables.CURRENT_OUTPUT = mid_out
 
             # link with referenced node 
-            create_arc(node_referenced, tran_refer,net,0)
+            create_arc(node_referenced, tran_refer,net)
         else:
-            create_arc(node_referenced,Variables.LAST_PARENT,net,0)
+            create_arc(node_referenced,Variables.LAST_PARENT,net)
 
     # save the reference for cases where multiple structures belongs to a condition of a control type
     # and its need only one for conections
@@ -292,9 +297,10 @@ def literals(ast,node,net:PetriNet):
     '''
     final_conect(ast,node,net)
     literal = Place(node["kind"] + "_" + str(node["value"]),node["id"])
+    literal.setInitialMarking(1)
     net.nodes.append(literal)
-    create_arc(Variables.LAST_PARENT,literal,net,0)
-    create_arc(literal,Variables.LAST_PARENT,net,0)
+    create_arc(Variables.LAST_PARENT,literal,net)
+    create_arc(literal,Variables.LAST_PARENT,net)
        
 def operators( ast, node, net:PetriNet):
     '''
@@ -308,12 +314,12 @@ def operators( ast, node, net:PetriNet):
         if parent_kind in Variables.CONTROL_TYPES:
             # its a operator inside the contorl condition
             create_sec_tran(net)
-            create_arc(Variables.CURRENT_OUTPUT,operator,net,0)
+            create_arc(Variables.CURRENT_OUTPUT,operator,net)
 
             Variables.CHECKED_NODES[node["parent"]]["input_node"] = Variables.CURRENT_OUTPUT.getId()
             out_mid= Place("OutputInter",next(Variables.ID_GEN))
             net.nodes.append(out_mid)
-            create_arc(operator,out_mid,net,0)
+            create_arc(operator,out_mid,net)
 
             Variables.CHECKED_NODES[node["parent"]]["referenced_node"] = node["id"]
         
@@ -328,15 +334,15 @@ def operators( ast, node, net:PetriNet):
             # its an operator that saves the value in a "vardecl"
             nex_node = Place("nex_ob",next(Variables.ID_GEN))
             net.nodes.append(nex_node)
-            create_arc(nex_node,Variables.LAST_PARENT,net,0)
-            create_arc(operator,nex_node,net,0)
+            create_arc(nex_node,Variables.LAST_PARENT,net)
+            create_arc(operator,nex_node,net)
 
         elif parent_kind == Variables.DO_WHILE:
             # its the condition of a do while
-            create_arc(Variables.CURRENT_OUTPUT,operator,net,0)
+            create_arc(Variables.CURRENT_OUTPUT,operator,net)
             out_op = Place("out_eval", next(Variables.ID_GEN))
             net.nodes.append(out_op)
-            create_arc(operator,out_op,net,0)
+            create_arc(operator,out_op,net)
 
             Variables.CURRENT_OUTPUT = out_op
             Variables.ID_MAIN_PARENT = node["parent"]   
@@ -347,14 +353,14 @@ def operators( ast, node, net:PetriNet):
                 create_sec_tran(net)
         
             Variables.CHECKED_NODES[node["id"]]["input_node"] = Variables.CURRENT_OUTPUT.getId()
-            create_arc(Variables.CURRENT_OUTPUT,operator,net,0)
+            create_arc(Variables.CURRENT_OUTPUT,operator,net)
 
             output_p = Place("Output" + node["kind"],next(Variables.ID_GEN))
             net.nodes.append(output_p)
             Variables.CURRENT_OUTPUT = output_p
             Variables.CHECKED_NODES[node["id"]]["output_node"] == output_p.getId()
 
-            create_arc(operator,output_p,net,0)
+            create_arc(operator,output_p,net)
 
         Variables.LAST_PARENT = operator
         net.nodes.append(operator)
@@ -378,25 +384,27 @@ Function that manage the true or false branch of an If structure.
 Create its respective transitions and arcs to complete the pattern. 
 '''
 def control_if_treatment(ast,node,net:PetriNet):
+        Variables.ID_MAIN_PARENT = node["parent"]
         # if node is the second child of a ifstmt we identify it as the true branch
         if  ast[node["parent"]]["inner"][1] == node["id"]:
             # create a transition for the true branch
             t_true = Transition("t_true_"+ str(next(Variables.ID_GEN)))
             net.nodes.append(t_true)
             Variables.CHECKED_NODES[node["parent"]]["middle_output"] = Variables.CURRENT_OUTPUT.getId()
-            create_arc(Variables.CURRENT_OUTPUT,t_true,net,0)
+            create_arc(Variables.CURRENT_OUTPUT,t_true,net)
 
             '''node referenced of the eval stmt'''
             eval_node = search_node_by_id( Variables.CHECKED_NODES[Variables.ID_MAIN_PARENT]["referenced_node"],net)
 
             # if the referenced node is a transition we need a place to link it 
-            verify_object(eval_node,t_true,net,1)
+            verify_object(eval_node,t_true,net)
 
             out_mid_true = Place("OuputTrueBranch", next(Variables.ID_GEN))
             net.nodes.append(out_mid_true)
 
             Variables.CURRENT_OUTPUT = out_mid_true            
-            create_arc(t_true,out_mid_true,net,0)
+            create_arc(t_true,out_mid_true,net)
+
 
         elif "hasElse" in ast[Variables.ID_MAIN_PARENT] and ast[Variables.ID_MAIN_PARENT]["inner"][2] == node["id"]:
             # it's the false branch of an if 
@@ -408,15 +416,15 @@ def control_if_treatment(ast,node,net:PetriNet):
             # obtain mid place created in the true branch 
             # the false node has to begin in the same node 
             input_mid= search_node_by_id(Variables.CHECKED_NODES[Variables.ID_MAIN_PARENT]["middle_output"], net)
-            create_arc(input_mid,t_false,net,0)
+            create_arc(input_mid,t_false,net)
 
             # retrive evaluation node referenced before
             eval_node = search_node_by_id(Variables.CHECKED_NODES[Variables.ID_MAIN_PARENT]["referenced_node"],net)
-            verify_object(eval_node,t_false,net,0)
+            verify_object(eval_node,t_false,net)
             
             out_false_mid = Place("OuputFalseBranch", next(Variables.ID_GEN))
             net.nodes.append(out_false_mid)
-            create_arc(t_false,out_false_mid,net,0)
+            create_arc(t_false,out_false_mid,net)
 
             Variables.CURRENT_OUTPUT = out_false_mid
 
@@ -446,28 +454,28 @@ def compound_control(ast, node,net:PetriNet):
         # Create while transition 
         t_while = Transition("t_while" + str(next(Variables.ID_GEN)))
         net.nodes.append(t_while)
-        create_arc(in_out_par,t_while,net,0)
+        create_arc(in_out_par,t_while,net)
 
         
         out_aux = Place("midOutwhile", next(Variables.ID_GEN))
         net.nodes.append(out_aux)
 
         Variables.CURRENT_OUTPUT = out_aux
-        create_arc(t_while,out_aux,net,0)
+        create_arc(t_while,out_aux,net)
 
         # Create end while transition 
         t_end_while = Transition("t_end_while" + str(next(Variables.ID_GEN)))
         net.nodes.append(t_end_while)
-        create_arc(in_out_par,t_end_while,net,0)
+        create_arc(in_out_par,t_end_while,net)
         
         # retrieve evaluatoin node and connect to prevoius  transitions
         node_eval = search_node_by_id( Variables.CHECKED_NODES[node["parent"]]["referenced_node"],net)
-        verify_object(node_eval,t_while,net,1)
-        verify_object(node_eval,t_end_while,net,0)
+        verify_object(node_eval,t_while,net)
+        verify_object(node_eval,t_end_while,net)
         
         output_final = Place("finalOutputWhile", next(Variables.ID_GEN))
         net.nodes.append(output_final)
-        create_arc(t_end_while,output_final,net,0)
+        create_arc(t_end_while,output_final,net)
         Variables.CHECKED_NODES[node["parent"]]["output_node"] = output_final.getId()
 
     elif parent_kind == Variables.DO_WHILE:
@@ -482,29 +490,29 @@ def compound_control(ast, node,net:PetriNet):
         t_eval_con = Transition("t_eval_continues_" + str(next(Variables.ID_GEN)))
         net.nodes.append(t_eval_con)
         Variables.CHECKED_NODES[Variables.ID_MAIN_PARENT]["input_node"] = Variables.CURRENT_OUTPUT.getId()
-        create_arc(Variables.CURRENT_OUTPUT,t_eval_con,net,0)
+        create_arc(Variables.CURRENT_OUTPUT,t_eval_con,net)
 
         out_eval = Place("out_eval_", next(Variables.ID_GEN))
         net.nodes.append(out_eval)
 
-        create_arc(t_eval_con,out_eval,net,0)
+        create_arc(t_eval_con,out_eval,net)
         Variables.CHECKED_NODES[Variables.ID_MAIN_PARENT]["middle_output"] = out_eval.getId()
 
         cond_for = Place("for_cond",next(Variables.ID_GEN))
         net.nodes.append(cond_for)
 
-        create_arc(t_eval_con,cond_for,net,0)
-        create_arc(cond_for,t_eval_con,net,0)
+        create_arc(t_eval_con,cond_for,net)
+        create_arc(cond_for,t_eval_con,net)
 
         # Create end transition of the FOR structure
         t_end_for = Transition("t_end_for" + str(next(Variables.ID_GEN)))
         net.nodes.append(t_end_for)
-        create_arc(cond_for,t_end_for,net,0)
+        create_arc(cond_for,t_end_for,net)
 
         out_for_loop = Place("out_for",next(Variables.ID_GEN))
         net.nodes.append(out_for_loop)
        
-        create_arc(t_end_for,out_for_loop,net,0)
+        create_arc(t_end_for,out_for_loop,net)
 
         # Save information for current state
         Variables.CURRENT_OUTPUT = out_eval
@@ -524,12 +532,12 @@ def return_stmt(ast,node, net: PetriNet):
     # Create a transition for the return stmt
     tran_rtn = Transition(node['id'])
     net.nodes.append(tran_rtn)
-    create_arc(input,tran_rtn,net,0)
+    create_arc(input,tran_rtn,net)
 
     # Create an output place for the return stmt
     output_rtn = Place("OutputRtn", next(Variables.ID_GEN))
     net.nodes.append(output_rtn)
-    create_arc(tran_rtn,output_rtn,net,0)
+    create_arc(tran_rtn,output_rtn,net)
 
     # Update global variables
     Variables.LAST_PARENT = tran_rtn
