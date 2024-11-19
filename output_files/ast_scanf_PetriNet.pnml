@@ -52,7 +52,7 @@
         </transition>
         <place id="3">
           <graphics>
-            <position x="329.0" y="274.0" />
+            <position x="399.0" y="274.0" />
           </graphics>
           <name>
             <value>out_con</value>
@@ -76,7 +76,7 @@
         </transition>
         <place id="4">
           <graphics>
-            <position x="399.0" y="309.0" />
+            <position x="469.0" y="274.0" />
           </graphics>
           <name>
             <value>OutputDeclStmt</value>
@@ -91,7 +91,7 @@
         </place>
         <place id="0x10d9538">
           <graphics>
-            <position x="469.0" y="309.0" />
+            <position x="469.0" y="274.0" />
           </graphics>
           <name>
             <value>varId_my_number</value>
@@ -115,7 +115,7 @@
         </transition>
         <place id="5">
           <graphics>
-            <position x="504.0" y="379.0" />
+            <position x="504.0" y="274.0" />
           </graphics>
           <name>
             <value>out_mid_x</value>
@@ -130,7 +130,7 @@
         </place>
         <place id="0x10d9618">
           <graphics>
-            <position x="574.0" y="449.0" />
+            <position x="504.0" y="274.0" />
           </graphics>
           <name>
             <value>StringLiteral_"%d"</value>
@@ -145,7 +145,7 @@
         </place>
         <place id="6">
           <graphics>
-            <position x="609.0" y="449.0" />
+            <position x="539.0" y="309.0" />
           </graphics>
           <name>
             <value>OutputUnaryOperator</value>
@@ -178,7 +178,7 @@
         </transition>
         <place id="8">
           <graphics>
-            <position x="644.0" y="484.0" />
+            <position x="539.0" y="344.0" />
           </graphics>
           <name>
             <value>out_con</value>
@@ -202,7 +202,7 @@
         </transition>
         <place id="9">
           <graphics>
-            <position x="714.0" y="554.0" />
+            <position x="539.0" y="344.0" />
           </graphics>
           <name>
             <value>OutputRtn</value>
@@ -217,7 +217,7 @@
         </place>
         <place id="0x10d9790">
           <graphics>
-            <position x="784.0" y="624.0" />
+            <position x="539.0" y="414.0" />
           </graphics>
           <name>
             <value>IntegerLiteral_0</value>

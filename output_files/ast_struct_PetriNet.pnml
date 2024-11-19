@@ -28,7 +28,7 @@
         </transition>
         <place id="1">
           <graphics>
-            <position x="399.0" y="204.0" />
+            <position x="329.0" y="169.0" />
           </graphics>
           <name>
             <value>OutputInter</value>
@@ -43,7 +43,7 @@
         </place>
         <place id="0xc84438">
           <graphics>
-            <position x="434.0" y="239.0" />
+            <position x="329.0" y="239.0" />
           </graphics>
           <name>
             <value>name</value>
@@ -58,7 +58,7 @@
         </place>
         <place id="0xc844a0">
           <graphics>
-            <position x="434.0" y="274.0" />
+            <position x="399.0" y="309.0" />
           </graphics>
           <name>
             <value>citNo</value>
@@ -88,7 +88,7 @@
         </place>
         <place id="0xc845b8">
           <graphics>
-            <position x="504.0" y="414.0" />
+            <position x="504.0" y="379.0" />
           </graphics>
           <name>
             <value>varId_person_insider</value>
@@ -112,7 +112,7 @@
         </transition>
         <place id="2">
           <graphics>
-            <position x="539.0" y="414.0" />
+            <position x="539.0" y="379.0" />
           </graphics>
           <name>
             <value>OutputInter</value>
@@ -136,7 +136,7 @@
         </transition>
         <place id="4">
           <graphics>
-            <position x="539.0" y="484.0" />
+            <position x="574.0" y="449.0" />
           </graphics>
           <name>
             <value>out_con</value>
@@ -160,7 +160,7 @@
         </transition>
         <place id="5">
           <graphics>
-            <position x="609.0" y="519.0" />
+            <position x="609.0" y="484.0" />
           </graphics>
           <name>
             <value>OutputDeclStmt</value>
@@ -199,7 +199,7 @@
         </transition>
         <place id="7">
           <graphics>
-            <position x="714.0" y="589.0" />
+            <position x="644.0" y="589.0" />
           </graphics>
           <name>
             <value>out_con</value>
@@ -223,7 +223,7 @@
         </transition>
         <place id="8">
           <graphics>
-            <position x="749.0" y="589.0" />
+            <position x="714.0" y="659.0" />
           </graphics>
           <name>
             <value>OutputDeclStmt</value>
@@ -238,7 +238,7 @@
         </place>
         <place id="0xc84998">
           <graphics>
-            <position x="749.0" y="624.0" />
+            <position x="784.0" y="694.0" />
           </graphics>
           <name>
             <value>varId_persons</value>
@@ -262,7 +262,7 @@
         </transition>
         <place id="10">
           <graphics>
-            <position x="819.0" y="694.0" />
+            <position x="819.0" y="764.0" />
           </graphics>
           <name>
             <value>out_con</value>
@@ -286,7 +286,7 @@
         </transition>
         <place id="11">
           <graphics>
-            <position x="889.0" y="694.0" />
+            <position x="889.0" y="764.0" />
           </graphics>
           <name>
             <value>OutputRtn</value>
@@ -301,7 +301,7 @@
         </place>
         <place id="0xc84a18">
           <graphics>
-            <position x="959.0" y="694.0" />
+            <position x="924.0" y="834.0" />
           </graphics>
           <name>
             <value>IntegerLiteral_0</value>

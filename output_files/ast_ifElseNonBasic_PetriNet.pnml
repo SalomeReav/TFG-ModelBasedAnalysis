@@ -28,7 +28,7 @@
         </transition>
         <place id="1">
           <graphics>
-            <position x="399.0" y="204.0" />
+            <position x="364.0" y="169.0" />
           </graphics>
           <name>
             <value>OutputInter</value>
@@ -52,7 +52,7 @@
         </transition>
         <place id="3">
           <graphics>
-            <position x="434.0" y="204.0" />
+            <position x="399.0" y="169.0" />
           </graphics>
           <name>
             <value>out_con</value>
@@ -76,7 +76,7 @@
         </transition>
         <place id="4">
           <graphics>
-            <position x="504.0" y="239.0" />
+            <position x="434.0" y="239.0" />
           </graphics>
           <name>
             <value>OutputRtn</value>
@@ -91,7 +91,7 @@
         </place>
         <place id="0xe15b60">
           <graphics>
-            <position x="539.0" y="309.0" />
+            <position x="434.0" y="239.0" />
           </graphics>
           <name>
             <value>IntegerLiteral_7</value>
@@ -115,7 +115,7 @@
         </transition>
         <place id="5">
           <graphics>
-            <position x="574.0" y="344.0" />
+            <position x="434.0" y="239.0" />
           </graphics>
           <name>
             <value>OutputInter</value>
@@ -130,7 +130,7 @@
         </place>
         <place id="0xe15bc0">
           <graphics>
-            <position x="574.0" y="344.0" />
+            <position x="469.0" y="274.0" />
           </graphics>
           <name>
             <value>argc</value>
@@ -145,7 +145,7 @@
         </place>
         <place id="0xe15c80">
           <graphics>
-            <position x="644.0" y="344.0" />
+            <position x="539.0" y="309.0" />
           </graphics>
           <name>
             <value>argv</value>
@@ -169,7 +169,7 @@
         </transition>
         <place id="7">
           <graphics>
-            <position x="714.0" y="379.0" />
+            <position x="539.0" y="309.0" />
           </graphics>
           <name>
             <value>out_con</value>
@@ -193,7 +193,7 @@
         </transition>
         <place id="8">
           <graphics>
-            <position x="784.0" y="379.0" />
+            <position x="609.0" y="344.0" />
           </graphics>
           <name>
             <value>OutputDeclStmt</value>
@@ -208,7 +208,7 @@
         </place>
         <place id="0xe15e60">
           <graphics>
-            <position x="819.0" y="379.0" />
+            <position x="609.0" y="414.0" />
           </graphics>
           <name>
             <value>varId_z</value>
@@ -223,7 +223,7 @@
         </place>
         <place id="0xe15ec8">
           <graphics>
-            <position x="854.0" y="449.0" />
+            <position x="609.0" y="449.0" />
           </graphics>
           <name>
             <value>IntegerLiteral_5</value>
@@ -247,7 +247,7 @@
         </transition>
         <place id="10">
           <graphics>
-            <position x="889.0" y="484.0" />
+            <position x="679.0" y="484.0" />
           </graphics>
           <name>
             <value>out_con</value>
@@ -262,7 +262,7 @@
         </place>
         <place id="11">
           <graphics>
-            <position x="959.0" y="484.0" />
+            <position x="714.0" y="519.0" />
           </graphics>
           <name>
             <value>OutputInter</value>
@@ -286,7 +286,7 @@
         </transition>
         <place id="12">
           <graphics>
-            <position x="959.0" y="519.0" />
+            <position x="749.0" y="519.0" />
           </graphics>
           <name>
             <value>OutputBinaryOperator</value>
@@ -319,7 +319,7 @@
         </transition>
         <place id="13">
           <graphics>
-            <position x="1029.0" y="554.0" />
+            <position x="749.0" y="519.0" />
           </graphics>
           <name>
             <value>out_refer</value>
@@ -334,7 +334,7 @@
         </place>
         <place id="14">
           <graphics>
-            <position x="1064.0" y="589.0" />
+            <position x="749.0" y="554.0" />
           </graphics>
           <name>
             <value>out_mid_x</value>
@@ -358,7 +358,7 @@
         </transition>
         <place id="15">
           <graphics>
-            <position x="1134.0" y="589.0" />
+            <position x="749.0" y="624.0" />
           </graphics>
           <name>
             <value>out_refer</value>
@@ -373,7 +373,7 @@
         </place>
         <place id="16">
           <graphics>
-            <position x="1134.0" y="659.0" />
+            <position x="784.0" y="694.0" />
           </graphics>
           <name>
             <value>out_mid_x</value>
@@ -397,7 +397,7 @@
         </transition>
         <place id="18">
           <graphics>
-            <position x="1204.0" y="729.0" />
+            <position x="854.0" y="694.0" />
           </graphics>
           <name>
             <value>out_mid_ref</value>
@@ -412,7 +412,7 @@
         </place>
         <place id="19">
           <graphics>
-            <position x="1239.0" y="764.0" />
+            <position x="889.0" y="764.0" />
           </graphics>
           <name>
             <value>OuputTrueBranch</value>
@@ -436,7 +436,7 @@
         </transition>
         <place id="20">
           <graphics>
-            <position x="1239.0" y="764.0" />
+            <position x="889.0" y="799.0" />
           </graphics>
           <name>
             <value>out_mid_x</value>
@@ -451,7 +451,7 @@
         </place>
         <place id="0xd9abd8">
           <graphics>
-            <position x="1309.0" y="799.0" />
+            <position x="959.0" y="834.0" />
           </graphics>
           <name>
             <value>StringLiteral_"Yes."</value>
@@ -475,7 +475,7 @@
         </transition>
         <place id="22">
           <graphics>
-            <position x="1309.0" y="869.0" />
+            <position x="994.0" y="904.0" />
           </graphics>
           <name>
             <value>out_con</value>
@@ -490,7 +490,7 @@
         </place>
         <place id="23">
           <graphics>
-            <position x="1309.0" y="869.0" />
+            <position x="1064.0" y="904.0" />
           </graphics>
           <name>
             <value>OutputInter</value>
@@ -514,7 +514,7 @@
         </transition>
         <place id="24">
           <graphics>
-            <position x="1379.0" y="904.0" />
+            <position x="1134.0" y="974.0" />
           </graphics>
           <name>
             <value>OutputBinaryOperator</value>
@@ -547,7 +547,7 @@
         </transition>
         <place id="25">
           <graphics>
-            <position x="1449.0" y="939.0" />
+            <position x="1204.0" y="974.0" />
           </graphics>
           <name>
             <value>out_refer</value>
@@ -562,7 +562,7 @@
         </place>
         <place id="26">
           <graphics>
-            <position x="1449.0" y="974.0" />
+            <position x="1239.0" y="1009.0" />
           </graphics>
           <name>
             <value>out_mid_x</value>
@@ -577,7 +577,7 @@
         </place>
         <place id="0xd9ad18">
           <graphics>
-            <position x="1484.0" y="974.0" />
+            <position x="1274.0" y="1044.0" />
           </graphics>
           <name>
             <value>IntegerLiteral_10</value>
@@ -592,7 +592,7 @@
         </place>
         <place id="27">
           <graphics>
-            <position x="1519.0" y="1009.0" />
+            <position x="1274.0" y="1114.0" />
           </graphics>
           <name>
             <value>OutputUnaryOperator</value>
@@ -625,7 +625,7 @@
         </transition>
         <place id="28">
           <graphics>
-            <position x="1589.0" y="1009.0" />
+            <position x="1309.0" y="1184.0" />
           </graphics>
           <name>
             <value>out_refer</value>
@@ -640,7 +640,7 @@
         </place>
         <place id="29">
           <graphics>
-            <position x="1659.0" y="1009.0" />
+            <position x="1344.0" y="1254.0" />
           </graphics>
           <name>
             <value>out_mid_x</value>
@@ -664,7 +664,7 @@
         </transition>
         <place id="31">
           <graphics>
-            <position x="1694.0" y="1044.0" />
+            <position x="1414.0" y="1324.0" />
           </graphics>
           <name>
             <value>out_mid_ref</value>
@@ -679,7 +679,7 @@
         </place>
         <place id="32">
           <graphics>
-            <position x="1694.0" y="1044.0" />
+            <position x="1414.0" y="1394.0" />
           </graphics>
           <name>
             <value>OuputTrueBranch</value>
@@ -703,7 +703,7 @@
         </transition>
         <place id="33">
           <graphics>
-            <position x="1764.0" y="1114.0" />
+            <position x="1484.0" y="1394.0" />
           </graphics>
           <name>
             <value>out_refer</value>
@@ -718,7 +718,7 @@
         </place>
         <place id="34">
           <graphics>
-            <position x="1834.0" y="1114.0" />
+            <position x="1554.0" y="1429.0" />
           </graphics>
           <name>
             <value>out_mid_x</value>
@@ -733,7 +733,7 @@
         </place>
         <place id="0xd9ae48">
           <graphics>
-            <position x="1869.0" y="1149.0" />
+            <position x="1554.0" y="1429.0" />
           </graphics>
           <name>
             <value>StringLiteral_"Well."</value>

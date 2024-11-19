@@ -43,7 +43,7 @@
         </place>
         <place id="0xcb3c48">
           <graphics>
-            <position x="399.0" y="169.0" />
+            <position x="399.0" y="204.0" />
           </graphics>
           <name>
             <value>argc</value>
@@ -58,7 +58,7 @@
         </place>
         <place id="0xcb3d10">
           <graphics>
-            <position x="434.0" y="204.0" />
+            <position x="469.0" y="239.0" />
           </graphics>
           <name>
             <value>argv</value>
@@ -82,7 +82,7 @@
         </transition>
         <place id="3">
           <graphics>
-            <position x="469.0" y="274.0" />
+            <position x="504.0" y="239.0" />
           </graphics>
           <name>
             <value>out_con</value>
@@ -106,7 +106,7 @@
         </transition>
         <place id="4">
           <graphics>
-            <position x="469.0" y="344.0" />
+            <position x="574.0" y="274.0" />
           </graphics>
           <name>
             <value>OutputDeclStmt</value>
@@ -121,7 +121,7 @@
         </place>
         <place id="0xcb3ef0">
           <graphics>
-            <position x="504.0" y="379.0" />
+            <position x="574.0" y="274.0" />
           </graphics>
           <name>
             <value>varId_filename</value>
@@ -145,7 +145,7 @@
         </transition>
         <place id="6">
           <graphics>
-            <position x="574.0" y="449.0" />
+            <position x="609.0" y="309.0" />
           </graphics>
           <name>
             <value>out_con</value>
@@ -160,7 +160,7 @@
         </place>
         <place id="7">
           <graphics>
-            <position x="644.0" y="449.0" />
+            <position x="609.0" y="309.0" />
           </graphics>
           <name>
             <value>OutputBinaryOperator</value>
@@ -184,7 +184,7 @@
         </transition>
         <place id="0xcb3fb0">
           <graphics>
-            <position x="644.0" y="484.0" />
+            <position x="644.0" y="344.0" />
           </graphics>
           <name>
             <value>IntegerLiteral_1</value>

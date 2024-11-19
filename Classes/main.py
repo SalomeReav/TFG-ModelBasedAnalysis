@@ -2,6 +2,7 @@ import xml.etree.ElementTree as ET
 import json
 import sys
 import os 
+import time
 from PetriNet import PetriNet 
 import Mods
 from Variables import Variables
@@ -9,6 +10,7 @@ from Variables import Variables
 
 
 def main():
+    inicio_gen = time.time()
     if len(sys.argv) != 2:
         print("Usage: python3 main.py <json_file>")
         sys.exit(1)
@@ -35,6 +37,12 @@ def main():
     root = ET.Element("pnml")
     name_file = os.path.splitext(os.path.basename(file))[0]
     net.writeOuput(root,str(name_file) +"_PetriNet.pnml")
+
+    fin_gen = time.time()
+    tiempo_gen = fin_gen - inicio_gen
+
+    print(f"Tiempo de ejecución global:{tiempo_gen: .4f} segundos")
+
 
 if __name__== "__main__":
     main()
