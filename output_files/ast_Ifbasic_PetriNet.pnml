@@ -28,7 +28,7 @@
         </transition>
         <place id="1">
           <graphics>
-            <position x="329.0" y="204.0" />
+            <position x="364.0" y="169.0" />
           </graphics>
           <name>
             <value>OutputInter</value>
@@ -43,7 +43,7 @@
         </place>
         <place id="0x21cbaa8">
           <graphics>
-            <position x="399.0" y="239.0" />
+            <position x="434.0" y="204.0" />
           </graphics>
           <name>
             <value>argc</value>
@@ -58,7 +58,7 @@
         </place>
         <place id="0x21cbb70">
           <graphics>
-            <position x="434.0" y="239.0" />
+            <position x="469.0" y="204.0" />
           </graphics>
           <name>
             <value>argv</value>
@@ -82,7 +82,7 @@
         </transition>
         <place id="3">
           <graphics>
-            <position x="434.0" y="274.0" />
+            <position x="539.0" y="239.0" />
           </graphics>
           <name>
             <value>out_con</value>
@@ -106,7 +106,7 @@
         </transition>
         <place id="4">
           <graphics>
-            <position x="469.0" y="309.0" />
+            <position x="539.0" y="239.0" />
           </graphics>
           <name>
             <value>OutputDeclStmt</value>
@@ -121,7 +121,7 @@
         </place>
         <place id="0x21cbd50">
           <graphics>
-            <position x="504.0" y="379.0" />
+            <position x="539.0" y="274.0" />
           </graphics>
           <name>
             <value>varId_x</value>
@@ -136,7 +136,7 @@
         </place>
         <place id="0x21cbdb8">
           <graphics>
-            <position x="539.0" y="414.0" />
+            <position x="609.0" y="274.0" />
           </graphics>
           <name>
             <value>IntegerLiteral_5</value>
@@ -160,7 +160,7 @@
         </transition>
         <place id="6">
           <graphics>
-            <position x="609.0" y="414.0" />
+            <position x="679.0" y="309.0" />
           </graphics>
           <name>
             <value>out_con</value>
@@ -184,7 +184,7 @@
         </transition>
         <place id="7">
           <graphics>
-            <position x="644.0" y="484.0" />
+            <position x="679.0" y="309.0" />
           </graphics>
           <name>
             <value>OutputDeclStmt</value>
@@ -199,7 +199,7 @@
         </place>
         <place id="0x21cbe08">
           <graphics>
-            <position x="714.0" y="519.0" />
+            <position x="679.0" y="379.0" />
           </graphics>
           <name>
             <value>varId_y</value>
@@ -214,7 +214,7 @@
         </place>
         <place id="0x21cbe70">
           <graphics>
-            <position x="749.0" y="519.0" />
+            <position x="714.0" y="449.0" />
           </graphics>
           <name>
             <value>IntegerLiteral_6</value>
@@ -238,7 +238,7 @@
         </transition>
         <place id="9">
           <graphics>
-            <position x="749.0" y="554.0" />
+            <position x="714.0" y="484.0" />
           </graphics>
           <name>
             <value>out_con</value>
@@ -262,7 +262,7 @@
         </transition>
         <place id="10">
           <graphics>
-            <position x="749.0" y="589.0" />
+            <position x="784.0" y="519.0" />
           </graphics>
           <name>
             <value>OutputDeclStmt</value>
@@ -277,7 +277,7 @@
         </place>
         <place id="0x21cbec0">
           <graphics>
-            <position x="749.0" y="589.0" />
+            <position x="854.0" y="589.0" />
           </graphics>
           <name>
             <value>varId_z</value>
@@ -292,7 +292,7 @@
         </place>
         <place id="11">
           <graphics>
-            <position x="784.0" y="659.0" />
+            <position x="854.0" y="624.0" />
           </graphics>
           <name>
             <value>nex_ob</value>
@@ -325,7 +325,7 @@
         </transition>
         <place id="12">
           <graphics>
-            <position x="784.0" y="694.0" />
+            <position x="924.0" y="694.0" />
           </graphics>
           <name>
             <value>midIF</value>
@@ -349,7 +349,7 @@
         </transition>
         <place id="14">
           <graphics>
-            <position x="854.0" y="764.0" />
+            <position x="994.0" y="694.0" />
           </graphics>
           <name>
             <value>OuputTrueBranch</value>
@@ -373,7 +373,7 @@
         </transition>
         <place id="15">
           <graphics>
-            <position x="924.0" y="834.0" />
+            <position x="1029.0" y="694.0" />
           </graphics>
           <name>
             <value>out_mid_x</value>
@@ -388,7 +388,7 @@
         </place>
         <place id="0x2150b68">
           <graphics>
-            <position x="994.0" y="834.0" />
+            <position x="1064.0" y="764.0" />
           </graphics>
           <name>
             <value>StringLiteral_"Yes."</value>

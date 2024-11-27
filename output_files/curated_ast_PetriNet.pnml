@@ -43,7 +43,7 @@
         </place>
         <place id="0x74e648">
           <graphics>
-            <position x="364.0" y="169.0" />
+            <position x="399.0" y="134.0" />
           </graphics>
           <name>
             <value>argc</value>
@@ -58,7 +58,7 @@
         </place>
         <place id="0x74e710">
           <graphics>
-            <position x="399.0" y="239.0" />
+            <position x="399.0" y="134.0" />
           </graphics>
           <name>
             <value>argv</value>
@@ -82,7 +82,7 @@
         </transition>
         <place id="3">
           <graphics>
-            <position x="434.0" y="309.0" />
+            <position x="399.0" y="134.0" />
           </graphics>
           <name>
             <value>out_con</value>
@@ -106,7 +106,7 @@
         </transition>
         <place id="4">
           <graphics>
-            <position x="504.0" y="309.0" />
+            <position x="469.0" y="169.0" />
           </graphics>
           <name>
             <value>OutputDeclStmt</value>
@@ -121,7 +121,7 @@
         </place>
         <place id="0x74e8f0">
           <graphics>
-            <position x="539.0" y="344.0" />
+            <position x="539.0" y="169.0" />
           </graphics>
           <name>
             <value>varId_filename</value>

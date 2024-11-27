@@ -47,7 +47,7 @@ class PetriNet:
                 out.write(b'<?xml version="1.0" encoding="UTF-8" standalone = "yes"?>\n')
                 et.write(out, encoding= 'UTF-8', xml_declaration= False)
         except IOError as e:
-            print("Error saving file: {e}")
+            print("Erroral abrir archivo: ", e)
 
     
 

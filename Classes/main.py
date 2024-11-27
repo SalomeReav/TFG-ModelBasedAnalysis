@@ -12,7 +12,7 @@ from Variables import Variables
 def main():
     inicio_gen = time.time()
     if len(sys.argv) != 2:
-        print("Usage: python3 main.py <json_file>")
+        print("Uso: python3 main.py <json_file>")
         sys.exit(1)
 
     file = sys.argv[1]
@@ -21,7 +21,7 @@ def main():
         jsonGenerated = open(file)
         myjson = json.load(jsonGenerated)
     except (FileNotFoundError, json.JSONDecodeError) as e:
-        print(f"Error loading JSON file: {e}")
+        print(f"Error al cargar fichero JSON: {e}")
         sys.exit(1)
 
     net = PetriNet()

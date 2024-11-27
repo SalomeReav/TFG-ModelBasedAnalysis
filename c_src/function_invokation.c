@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <unistd.h>
+
 void my_function(int a, int b, char c, int* d, char* e){
 
 }
