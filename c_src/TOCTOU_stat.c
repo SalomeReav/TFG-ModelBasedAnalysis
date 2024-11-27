@@ -13,7 +13,9 @@ void main(int argc, char *argv[]){
 		}
 		else{
 			printf("[+] ERROR\n");
-	} else {
+		}
+	} 
+	else {
 		printf("[+] ERROR\n");
 	}
 }
