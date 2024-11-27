@@ -1,0 +1,795 @@
+<?xml version="1.0" encoding="UTF-8" standalone = "yes"?>
+<pnml>
+      <net>
+        <token id="Default" red="0" green="0" blue="0" />
+        <place id="0">
+          <graphics>
+            <position x="329.0" y="134.0" />
+          </graphics>
+          <name>
+            <value>input_placeFunction</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value>1</value>
+          </initialMarking>
+        </place>
+        <transition id="0x210eb48">
+          <graphics>
+            <position x="342.0" y="100.0" />
+          </graphics>
+          <name>
+            <value>0x210eb48</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="1">
+          <graphics>
+            <position x="399.0" y="134.0" />
+          </graphics>
+          <name>
+            <value>OutputInter</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value />
+          </initialMarking>
+        </place>
+        <place id="0x210e968">
+          <graphics>
+            <position x="434.0" y="169.0" />
+          </graphics>
+          <name>
+            <value>argc</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value>1</value>
+          </initialMarking>
+        </place>
+        <place id="0x210ea30">
+          <graphics>
+            <position x="469.0" y="169.0" />
+          </graphics>
+          <name>
+            <value>argv</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value>1</value>
+          </initialMarking>
+        </place>
+        <transition id="t_sec_black2">
+          <graphics>
+            <position x="392.0" y="150.0" />
+          </graphics>
+          <name>
+            <value>t_sec_black2</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="3">
+          <graphics>
+            <position x="539.0" y="239.0" />
+          </graphics>
+          <name>
+            <value>out_con</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value />
+          </initialMarking>
+        </place>
+        <transition id="0x210ed08">
+          <graphics>
+            <position x="442.0" y="200.0" />
+          </graphics>
+          <name>
+            <value>0x210ed08</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="4">
+          <graphics>
+            <position x="574.0" y="239.0" />
+          </graphics>
+          <name>
+            <value>OutputDeclStmt</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value />
+          </initialMarking>
+        </place>
+        <place id="0x210ec10">
+          <graphics>
+            <position x="609.0" y="309.0" />
+          </graphics>
+          <name>
+            <value>varId_filename</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value>1</value>
+          </initialMarking>
+        </place>
+        <place id="0x210ec98">
+          <graphics>
+            <position x="609.0" y="344.0" />
+          </graphics>
+          <name>
+            <value>IntegerLiteral_1</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value>1</value>
+          </initialMarking>
+        </place>
+        <transition id="t_sec_black5">
+          <graphics>
+            <position x="492.0" y="250.0" />
+          </graphics>
+          <name>
+            <value>t_sec_black5</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="6">
+          <graphics>
+            <position x="644.0" y="344.0" />
+          </graphics>
+          <name>
+            <value>out_con</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value />
+          </initialMarking>
+        </place>
+        <place id="7">
+          <graphics>
+            <position x="679.0" y="414.0" />
+          </graphics>
+          <name>
+            <value>OutputInter</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value />
+          </initialMarking>
+        </place>
+        <transition id="0x210ee20">
+          <graphics>
+            <position x="542.0" y="300.0" />
+          </graphics>
+          <name>
+            <value>0x210ee20</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <transition id="0x20c3890">
+          <graphics>
+            <position x="592.0" y="350.0" />
+          </graphics>
+          <name>
+            <value>0x20c3890</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="8">
+          <graphics>
+            <position x="679.0" y="414.0" />
+          </graphics>
+          <name>
+            <value>out_mid_x</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value />
+          </initialMarking>
+        </place>
+        <place id="0x210ed60">
+          <graphics>
+            <position x="749.0" y="414.0" />
+          </graphics>
+          <name>
+            <value>IntegerLiteral_2</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value>1</value>
+          </initialMarking>
+        </place>
+        <transition id="t_true_9">
+          <graphics>
+            <position x="642.0" y="400.0" />
+          </graphics>
+          <name>
+            <value>t_true_9</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="10">
+          <graphics>
+            <position x="784.0" y="484.0" />
+          </graphics>
+          <name>
+            <value>out_mid_ref</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value>1</value>
+          </initialMarking>
+        </place>
+        <place id="11">
+          <graphics>
+            <position x="854.0" y="519.0" />
+          </graphics>
+          <name>
+            <value>OuputTrueBranch</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value />
+          </initialMarking>
+        </place>
+        <transition id="t_sec_black12">
+          <graphics>
+            <position x="692.0" y="450.0" />
+          </graphics>
+          <name>
+            <value>t_sec_black12</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="13">
+          <graphics>
+            <position x="889.0" y="519.0" />
+          </graphics>
+          <name>
+            <value>out_con</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value />
+          </initialMarking>
+        </place>
+        <transition id="0x2093bd0">
+          <graphics>
+            <position x="742.0" y="500.0" />
+          </graphics>
+          <name>
+            <value>0x2093bd0</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="14">
+          <graphics>
+            <position x="889.0" y="589.0" />
+          </graphics>
+          <name>
+            <value>OutputDeclStmt</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value />
+          </initialMarking>
+        </place>
+        <place id="0x2093990">
+          <graphics>
+            <position x="889.0" y="589.0" />
+          </graphics>
+          <name>
+            <value>varId_file</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value>1</value>
+          </initialMarking>
+        </place>
+        <transition id="0x20a3c40">
+          <graphics>
+            <position x="792.0" y="550.0" />
+          </graphics>
+          <name>
+            <value>0x20a3c40</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="15">
+          <graphics>
+            <position x="959.0" y="659.0" />
+          </graphics>
+          <name>
+            <value>out_mid_x</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value />
+          </initialMarking>
+        </place>
+        <place id="0x2093a78">
+          <graphics>
+            <position x="994.0" y="659.0" />
+          </graphics>
+          <name>
+            <value>StringLiteral_"a+"</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value>1</value>
+          </initialMarking>
+        </place>
+        <transition id="0x209e650">
+          <graphics>
+            <position x="842.0" y="600.0" />
+          </graphics>
+          <name>
+            <value>0x209e650</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="16">
+          <graphics>
+            <position x="1064.0" y="694.0" />
+          </graphics>
+          <name>
+            <value>out_mid_x</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value />
+          </initialMarking>
+        </place>
+        <transition id="t_false_17">
+          <graphics>
+            <position x="892.0" y="650.0" />
+          </graphics>
+          <name>
+            <value>t_false_17</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="18">
+          <graphics>
+            <position x="1064.0" y="764.0" />
+          </graphics>
+          <name>
+            <value>out_mid_ref</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value>1</value>
+          </initialMarking>
+        </place>
+        <place id="19">
+          <graphics>
+            <position x="1064.0" y="764.0" />
+          </graphics>
+          <name>
+            <value>OuputFalseBranch</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value />
+          </initialMarking>
+        </place>
+        <transition id="0x20a7e98">
+          <graphics>
+            <position x="942.0" y="700.0" />
+          </graphics>
+          <name>
+            <value>0x20a7e98</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+        </transition>
+        <place id="20">
+          <graphics>
+            <position x="1134.0" y="764.0" />
+          </graphics>
+          <name>
+            <value>out_mid_x</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value />
+          </initialMarking>
+        </place>
+        <place id="0x2093e98">
+          <graphics>
+            <position x="1134.0" y="799.0" />
+          </graphics>
+          <name>
+            <value>StringLiteral_"[+] ERROR\n"</value>
+            <graphics x="-5.0" y="35.0" />
+          </name>
+          <initialMarking>
+            <graphics>
+              <offset x="0.0" y="0.0" />
+            </graphics>
+            <value>1</value>
+          </initialMarking>
+        </place>
+        <arc id="0 TO 0x210eb48" source="0" target="0x210eb48">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x210eb48 TO 1" source="0x210eb48" target="1">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x210eb48 TO 0x210e968" source="0x210eb48" target="0x210e968">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x210e968 TO 0x210eb48" source="0x210e968" target="0x210eb48">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x210eb48 TO 0x210ea30" source="0x210eb48" target="0x210ea30">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x210ea30 TO 0x210eb48" source="0x210ea30" target="0x210eb48">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="1 TO t_sec_black2" source="1" target="t_sec_black2">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="t_sec_black2 TO 3" source="t_sec_black2" target="3">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="3 TO 0x210ed08" source="3" target="0x210ed08">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x210ed08 TO 4" source="0x210ed08" target="4">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x210ed08 TO 0x210ec10" source="0x210ed08" target="0x210ec10">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x210ea30 TO 0x210ed08" source="0x210ea30" target="0x210ed08">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x210ed08 TO 0x210ec98" source="0x210ed08" target="0x210ec98">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x210ec98 TO 0x210ed08" source="0x210ec98" target="0x210ed08">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="4 TO t_sec_black5" source="4" target="t_sec_black5">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="t_sec_black5 TO 6" source="t_sec_black5" target="6">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="6 TO 0x210ee20" source="6" target="0x210ee20">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x210ee20 TO 7" source="0x210ee20" target="7">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="7 TO 0x20c3890" source="7" target="0x20c3890">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x20c3890 TO 8" source="0x20c3890" target="8">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x210ec10 TO 0x20c3890" source="0x210ec10" target="0x20c3890">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x20c3890 TO 0x210ed60" source="0x20c3890" target="0x210ed60">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x210ed60 TO 0x20c3890" source="0x210ed60" target="0x20c3890">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="8 TO t_true_9" source="8" target="t_true_9">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="t_true_9 TO 10" source="t_true_9" target="10">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="10 TO 0x210ee20" source="10" target="0x210ee20">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="10 TO t_true_9" source="10" target="t_true_9">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x210ee20 TO 10" source="0x210ee20" target="10">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="t_true_9 TO 11" source="t_true_9" target="11">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="11 TO t_sec_black12" source="11" target="t_sec_black12">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="t_sec_black12 TO 13" source="t_sec_black12" target="13">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="13 TO 0x2093bd0" source="13" target="0x2093bd0">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x2093bd0 TO 14" source="0x2093bd0" target="14">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x2093bd0 TO 0x2093990" source="0x2093bd0" target="0x2093990">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="14 TO 0x20a3c40" source="14" target="0x20a3c40">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x20a3c40 TO 15" source="0x20a3c40" target="15">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x210ec10 TO 0x20a3c40" source="0x210ec10" target="0x20a3c40">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x20a3c40 TO 0x2093a78" source="0x20a3c40" target="0x2093a78">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x2093a78 TO 0x20a3c40" source="0x2093a78" target="0x20a3c40">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="15 TO 0x209e650" source="15" target="0x209e650">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x209e650 TO 16" source="0x209e650" target="16">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x2093990 TO 0x209e650" source="0x2093990" target="0x209e650">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="8 TO t_false_17" source="8" target="t_false_17">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="t_false_17 TO 18" source="t_false_17" target="18">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="18 TO 0x210ee20" source="18" target="0x210ee20">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="18 TO t_false_17" source="18" target="t_false_17">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x210ee20 TO 18" source="0x210ee20" target="18">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="t_false_17 TO 19" source="t_false_17" target="19">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="19 TO 0x20a7e98" source="19" target="0x20a7e98">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x20a7e98 TO 20" source="0x20a7e98" target="20">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x20a7e98 TO 0x2093e98" source="0x20a7e98" target="0x2093e98">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+        <arc id="0x2093e98 TO 0x20a7e98" source="0x2093e98" target="0x20a7e98">
+          <type value="normal" />
+          <inscription>
+            <value>1</value>
+          </inscription>
+        </arc>
+      </net>
+    </pnml>

@@ -1,0 +1,601 @@
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0029 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0027 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0031 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0262 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0016 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0027 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0017 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0018 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0017 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0023 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0032 segundos
+
+Tiempo de ejecución global: 0.0015 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0164 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0023 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0018 segundos
+
+Tiempo de ejecución global: 0.0022 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0018 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0025 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0030 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0018 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0023 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0011 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0009 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 5.3490 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0024 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0023 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0027 segundos
+
+Tiempo de ejecución global: 0.0011 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0101 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0021 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0028 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0010 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0030 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0022 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos
+
+Tiempo de ejecución global: 0.0020 segundos

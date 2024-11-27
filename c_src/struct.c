@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <unistd.h>
+
 struct Person {
   char name[50];
   int citNo;

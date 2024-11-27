@@ -1,0 +1,1 @@
+Tiempo de ejecución global: 0.0065 segundos
