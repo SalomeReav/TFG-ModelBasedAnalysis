@@ -9,7 +9,7 @@ En este repositorio los códigos fuente utilizados se encuentran en la carpeta c
 
 En la carpeta inputs se encuentran los ficheros .json que contienen el AST final de los c_src y que se usan como entrada para ejecutar la herramienta. 
 ## Ejecución 
-Para ejecutrar la herramienta con un fichero se tiene que lanzar el comando siguiente dentro de la carpeta Clasess: `pyhton3 main.py ..\inputs\{nombre fichero json}` 
+Para ejecutrar la herramienta con un fichero se tiene que lanzar el comando siguiente dentro de la carpeta Clasess: `python3 main.py ..\inputs\{nombre fichero json}` 
 
 El comando generará en la carpeta output_files un fichero .pnml que contiene la red de Petri en formato PNML.
 ## Visualización 
